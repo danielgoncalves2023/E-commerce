@@ -5,7 +5,7 @@ export default class Product {
     description;
     value;
 
-    constructor(name, images, description, value){
+    constructor(name: string, images: string, description: string, value: string){
         this.name = name;
         this.images = images;
         this.description = description;

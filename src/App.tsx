@@ -1,11 +1,11 @@
 import { ChakraProvider } from '@chakra-ui/react';
-import * as React from 'react';
-import { Header } from './components/header/Header.tsx';
+import Layout from './components/Layout';
+import Home from './pages/Home';
 
 export default function App() {
   return (
     <ChakraProvider>
-        <Header/>
+        <Home />
     </ChakraProvider>
   );
 }
