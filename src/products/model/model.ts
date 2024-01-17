@@ -1,5 +1,4 @@
 
-
 export default class Product {
     name;
     images;
