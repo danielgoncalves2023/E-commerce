@@ -1,38 +1,49 @@
-import { Button, ButtonGroup, Card, Image, Text, CardBody, CardFooter, Divider, Heading, Stack } from "@chakra-ui/react"
-import { mobile } from "../products/tecnologia/mobile"
+import { Button, ButtonGroup, Card, Image, Text, CardBody, CardFooter, Divider, Heading, Stack, Center } from "@chakra-ui/react"
+import { products } from "../products/products"
 
-export const CardInfo = () => {
+interface CardInfoProps {
+    images: string;
+    name: string;
+    description: string;
+    value: string;
+}
+
+export const CardInfo = ({ images, name, description, value }: CardInfoProps) => {
     return (
         <>
-            <Card maxW='sm'>
-                <CardBody>
-                    <Image
-                        src={mobile.images}
-                        alt={mobile.name}
-                        borderRadius='lg'
-                    />
-                    <Stack mt='6' spacing='3'>
-                        <Heading size='md'>{mobile.name}</Heading>
-                        <Text>
-                            {mobile.description}
-                        </Text>
-                        <Text color='blue.600' fontSize='2xl'>
-                            {mobile.value}
-                        </Text>
-                    </Stack>
-                </CardBody>
-                <Divider />
-                <CardFooter>
-                    <ButtonGroup spacing='2'>
-                        <Button variant='solid' colorScheme='blue'>
-                            Comprar
-                        </Button>
-                        <Button variant='ghost' colorScheme='blue'>
-                            Adicionar no carrinho
-                        </Button>
-                    </ButtonGroup>
-                </CardFooter>
-            </Card>
+            <Center>
+                <Card maxW='270px'>
+                    <CardBody>
+                        <Image
+                            src={images}
+                            alt={name}
+                            borderRadius='sm'
+                            boxSize='10rem'
+                            objectFit='contain'
+                        />
+                        <Stack mt='4' spacing='2'>
+                            <Heading fontSize='1rem' padding='5px'>{name}</Heading>
+                            <Text maxH='140px' overflowY='scroll'>
+                                {description}
+                            </Text>
+                            <Text color='blue.600' fontSize='xl'>
+                                {value}
+                            </Text>
+                        </Stack>
+                    </CardBody>
+                    <Divider m='2px' />
+                    <CardFooter>
+                        <ButtonGroup spacing='1'>
+                            <Button variant='solid' colorScheme='blue' fontSize='0.8rem'>
+                                Comprar
+                            </Button>
+                            <Button variant='ghost' colorScheme='blue' fontSize='0.8rem'>
+                                Adicionar no carrinho
+                            </Button>
+                        </ButtonGroup>
+                    </CardFooter>
+                </Card>
+            </Center>
         </>
     )
 }

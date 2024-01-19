@@ -27,10 +27,7 @@ export const Layout = () => {
     return (
         <Box>
             <Header>
-                {/* <CardInfo /> */}
-
                 <CarouselProducts />
-
             </Header>
         </Box>
     )

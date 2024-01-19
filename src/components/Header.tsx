@@ -22,10 +22,9 @@ export const Header = ({ children }: any) => {
                 <Grid w='100%' templateColumns='repeat(8, 1fr)' gap='1'>
                     <GridItem colSpan={5} placeSelf='start' marginLeft='70px'>
                         <Select placeholder="Categorias" border='none'>
-                            <option value='option1'>Tecnologia</option>
-                            <option value='option2'>Eletrodoméstico</option>
+                            <option value='option1'>Eletronicos</option>
                             <option value='option3'>Saúde</option>
-                            <option value='option3'>Moda</option>
+                            <option value='option4'>Moda</option>
                         </Select>
                     </GridItem>
                     <GridItem colSpan={1} placeSelf='center'>Crie sua conta</GridItem>
