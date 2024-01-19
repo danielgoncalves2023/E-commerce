@@ -76,6 +76,22 @@ export const CarouselProducts = () => {
                         value={products.electronics.notebook.value}
                         />
                     </div>
+                    <div>
+                        <CardInfo
+                        images={products.fashion.overcoat_f.images}
+                        name={products.fashion.overcoat_f.name}
+                        description={products.fashion.overcoat_f.description}
+                        value={products.fashion.overcoat_f.value}
+                        />
+                    </div>
+                    <div>
+                        <CardInfo
+                        images={products.fashion.jacket_m.images}
+                        name={products.fashion.jacket_m.name}
+                        description={products.fashion.jacket_m.description}
+                        value={products.fashion.jacket_m.value}
+                        />
+                    </div>
                 </Carousel>;
             </Box>
         </Center>

@@ -12,15 +12,17 @@ export const CardInfo = ({ images, name, description, value }: CardInfoProps) =>
     return (
         <>
             <Center>
-                <Card maxW='270px'>
+                <Card maxW='270px' maxH='auto'>
                     <CardBody>
-                        <Image
-                            src={images}
-                            alt={name}
-                            borderRadius='sm'
-                            boxSize='10rem'
-                            objectFit='contain'
-                        />
+                        <Center>
+                            <Image
+                                src={images}
+                                alt={name}
+                                borderRadius='sm'
+                                boxSize='10rem'
+                                objectFit='contain'
+                            />
+                        </Center>
                         <Stack mt='4' spacing='2'>
                             <Heading fontSize='1rem' padding='5px'>{name}</Heading>
                             <Text maxH='140px' overflowY='scroll'>

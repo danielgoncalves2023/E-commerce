@@ -1,8 +1,15 @@
-import Layout from "../components/Layout";
+import { Box } from "@chakra-ui/react";
+import Header from "../components/Header";
+import { CarouselProducts } from "../components/CarouselProducts";
+import 'react-multi-carousel/lib/styles.css';
 
 const Home = () => {
     return(
-        <Layout />
+        <Box>
+            <Header>
+                <CarouselProducts />
+            </Header>
+        </Box>
     )
 }
 
