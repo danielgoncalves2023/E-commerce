@@ -75,7 +75,7 @@ export const products = {
             "Explore o mundo da moda com a Jaqueta de Couro Masculina, uma expressão autêntica de estilo e atitude. Esta peça icônica combina design contemporâneo com a durabilidade clássica do couro genuíno, proporcionando um visual impactante e resistência para enfrentar qualquer clima.",
             value: "R$ 290,00"
         },
-        socialshow_m: {
+        socialshoes_m: {
             name: "Sapato Social Masculino",
             images: "/sapatosocialmasculino.jpg",
             description:
