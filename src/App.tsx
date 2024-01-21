@@ -1,12 +1,19 @@
-import { ChakraProvider } from '@chakra-ui/react';
-import Home from './pages/Home';
 import './App.css';
-import { Search } from './pages/Search';
+import { ChakraProvider } from '@chakra-ui/react';
+import { BrowserRouter } from 'react-router-dom';
+import MainRoutes from './routes';
+import { Layout } from './components/Layout';
 
-export default function App() {
+function App() {
   return (
-    <ChakraProvider>
-        <Search />
-    </ChakraProvider>
+    <BrowserRouter>
+      <ChakraProvider>
+        <Layout>
+          <MainRoutes />
+        </Layout>
+      </ChakraProvider>
+    </BrowserRouter>
   );
 }
+
+export default App;

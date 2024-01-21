@@ -1,1 +1,7 @@
-export {}
+
+export const CartShopping = () => {
+    return (
+            <>
+            </>
+        )
+}
