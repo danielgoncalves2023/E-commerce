@@ -2,7 +2,7 @@ import { Box, Center } from "@chakra-ui/react"
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import { CardInfo } from "./CardInfo";
-import { products } from "../products/products";
+import { electronics, fashion, health, products } from "../products/products";
 
 const responsive = {
     superLargeDesktop: {
@@ -53,50 +53,50 @@ export const CarouselProducts = () => {
                 >
                     <div>
                         <CardInfo
-                            images={products.electronics.mobile.images}
-                            name={products.electronics.mobile.name}
-                            description={products.electronics.mobile.description}
-                            value={products.electronics.mobile.value}
+                            images={electronics[0].images}
+                            name={electronics[0].name}
+                            description={electronics[0].description}
+                            value={electronics[0].value}
                         />
                     </div>
                     <div>
                         <CardInfo
-                            images={products.electronics.television.images}
-                            name={products.electronics.television.name}
-                            description={products.electronics.television.description}
-                            value={products.electronics.television.value}
+                            images={health[0].images}
+                            name={health[0].name}
+                            description={health[0].description}
+                            value={health[0].value}
                         />
                     </div>
                     <div>
                         <CardInfo
-                            images={products.electronics.sound_box.images}
-                            name={products.electronics.sound_box.name}
-                            description={products.electronics.sound_box.description}
-                            value={products.electronics.sound_box.value}
+                            images={electronics[1].images}
+                            name={electronics[1].name}
+                            description={electronics[1].description}
+                            value={electronics[1].value}
                         />
                     </div>
                     <div>
                         <CardInfo
-                            images={products.electronics.notebook.images}
-                            name={products.electronics.notebook.name}
-                            description={products.electronics.notebook.description}
-                            value={products.electronics.notebook.value}
+                            images={electronics[2].images}
+                            name={electronics[2].name}
+                            description={electronics[2].description}
+                            value={electronics[2].value}
                         />
                     </div>
                     <div>
                         <CardInfo
-                            images={products.fashion.overcoat_f.images}
-                            name={products.fashion.overcoat_f.name}
-                            description={products.fashion.overcoat_f.description}
-                            value={products.fashion.overcoat_f.value}
+                            images={fashion[2].images}
+                            name={fashion[2].name}
+                            description={fashion[2].description}
+                            value={fashion[2].value}
                         />
                     </div>
                     <div>
                         <CardInfo
-                            images={products.fashion.jacket_m.images}
-                            name={products.fashion.jacket_m.name}
-                            description={products.fashion.jacket_m.description}
-                            value={products.fashion.jacket_m.value}
+                            images={fashion[0].images}
+                            name={fashion[0].name}
+                            description={fashion[0].description}
+                            value={fashion[0].value}
                         />
                     </div>
                 </Carousel>

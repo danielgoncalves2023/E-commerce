@@ -4,8 +4,7 @@ export const searchProducts = (query: string, products: {}) => {
     query = query.toLowerCase();
     const results = [];
 
-    
-    
+   
 
 
 }

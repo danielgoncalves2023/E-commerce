@@ -1,19 +1,16 @@
 import { Box, Grid, GridItem, Image, Input, InputRightElement, InputGroup, Select } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { BsCart2 } from "react-icons/bs";
 import { GoSearch } from "react-icons/go";
-import { Link, Navigate, useNavigate } from "react-router-dom";
-import { products } from "../products/products";
-import Search from "../pages/Search";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Header = () => {
-    const [search, setSearch] = useState('');
-    const [searchCategory, setSearchCategory] = useState('');
+    const [searchBar, setSearchBar] = useState('');
     const navigate = useNavigate();
 
     const handleCategoryChange = (event: any) => {
         const selectedCategory = event.target.value;
-        navigate(`/search`)
+        navigate(`/search?category=${selectedCategory}`)
     }
 
     return (
@@ -28,14 +25,12 @@ export const Header = () => {
                     <GridItem rowSpan={1} colSpan={3}>
                         <InputGroup borderRadius='8px' boxSizing='border-box' boxShadow='rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;'>
                             <Input
-                                // TO DO TO DO TO DO TO DO TO DO TO DO
-                                onChange={(e) => setSearch(e.target.value)}
+                                onChange={(e) => setSearchBar(e.target.value)}
                                 bg='white'
                                 placeholder="Buscar produtos..."
                             />
                             <InputRightElement borderLeft='1px solid lightgray'>
-                                {/* TO DO TO DO TO DO TO DO TO DO TO DO */}
-                                <Link to={`/search?query=${search}`} style={{ textDecoration: 'none' }}>
+                                <Link to={`/search?query=${searchBar}`} style={{ textDecoration: 'none' }}>
                                     <GoSearch cursor='pointer' />
                                 </Link>
                             </InputRightElement>
@@ -49,9 +44,7 @@ export const Header = () => {
                             placeholder="Categorias"
                             border='none'
                             onChange={handleCategoryChange}
-                        // value={searchCategory}
                         >
-                            {/* TO DO TO DO TO DO TO DO TO DO TO DO */}
                             <option value='electronics'>Eletronicos</option>
                             <option value='health'>Saúde</option>
                             <option value='fashion'>Moda</option>
