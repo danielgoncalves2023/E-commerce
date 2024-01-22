@@ -10,6 +10,7 @@ export const Header = () => {
 
     const handleCategoryChange = (event: any) => {
         const selectedCategory = event.target.value;
+
         navigate(`/search?category=${selectedCategory}`)
     }
 
@@ -42,6 +43,7 @@ export const Header = () => {
                     <GridItem colSpan={5} marginLeft='20px' w='150px'>
                         <Select
                             placeholder="Categorias"
+                            value=''
                             border='none'
                             onChange={handleCategoryChange}
                         >
