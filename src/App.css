@@ -3,3 +3,7 @@ body {
     width: 100%;
     overflow-x: hidden;
 }
+
+html {
+    height: 100dvh;
+}

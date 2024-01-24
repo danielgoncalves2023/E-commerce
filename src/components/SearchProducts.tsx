@@ -10,7 +10,7 @@ interface CardInfoProps {
 export const SearchProducts = ({ images, name, description, value }: CardInfoProps) => {
     return (
         <>
-            <Box m='20px'>
+            <Box m='0 20px'>
                 <Card
                     direction={{ base: 'column', sm: 'row' }}
                     overflow='hidden'

@@ -15,20 +15,23 @@ export const useFilterProducts = (): Product[] => {
     // Utiliza as informações passadas através do Input (barra de pesquisa do site) '/search?query=casaco' para mecanismo de busca
     const queryParams = new URLSearchParams(location.search);
     const query = queryParams.get('query');
-    const navigate = useNavigate();
 
     var filteredProducts: Product[] = [];
 
     if (queryCategory) {
         // Filtra produtos pela categoria
         if (queryCategory === 'electronics') {
-            return electronics;
+            filteredProducts.push(...electronics)
+            return filteredProducts;
         } else if (queryCategory === 'health') {
-            return health;
+            filteredProducts.push(...health)
+            return filteredProducts;
         } else if (queryCategory === 'fashion') {
-            return fashion;
+            filteredProducts.push(...fashion)
+            return filteredProducts;
         }
     }
+    
     // Filtra produtos pelo nome ou descrição
     else if (query) {
 

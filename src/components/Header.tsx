@@ -16,7 +16,7 @@ export const Header = () => {
 
     return (
         <>
-            <Box bg='#FFD700' textAlign='center' p='10px'>
+            <Box bg='#FFD700' textAlign='center' p='10px' mb='10px'>
                 <Grid w='100%' h='50px' placeContent='center' templateColumns='repeat(5, 1fr)' gap='3' margin='2px auto 15px' padding='0 30px'>
                     <GridItem rowSpan={1} colSpan={2} placeSelf='self-start'>
                         <Link to='/'>
@@ -27,11 +27,21 @@ export const Header = () => {
                         <InputGroup borderRadius='8px' boxSizing='border-box' boxShadow='rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;'>
                             <Input
                                 onChange={(e) => setSearchBar(e.target.value)}
+                                onKeyDown={(e) => {
+                                    // Verifica se a tecla pressionada é Enter, e faz pesquisa
+                                    if (e.key === 'Enter') {
+                                        // Executa a lógica para enviar a pesquisa
+                                        navigate(`/search?query=${searchBar}`);
+                                        // Resetar o campo de input
+                                        setSearchBar('');
+                                    }
+                                }}
+                                value={searchBar} // Relacionar para resetar o input ao enviar formulário
                                 bg='white'
                                 placeholder="Buscar produtos..."
                             />
                             <InputRightElement borderLeft='1px solid lightgray'>
-                                <Link to={`/search?query=${searchBar}`} style={{ textDecoration: 'none' }}>
+                                <Link to={`/search?query=${searchBar}`}>
                                     <GoSearch cursor='pointer' />
                                 </Link>
                             </InputRightElement>
@@ -39,7 +49,7 @@ export const Header = () => {
                     </GridItem>
                 </Grid>
 
-                <Grid w='100%' templateColumns='repeat(8, 1fr)' gap='2'>
+                <Grid w='100%' templateColumns='repeat(8, 1fr)' gap='4'>
                     <GridItem colSpan={5} marginLeft='20px' w='150px'>
                         <Select
                             placeholder="Categorias"
@@ -55,7 +65,9 @@ export const Header = () => {
                     <GridItem colSpan={1} cursor='pointer' placeSelf='center' w='100px'>Crie sua conta</GridItem>
                     <GridItem colSpan={1} cursor='pointer' placeSelf='center'>Entre</GridItem>
                     <GridItem colSpan={1} cursor='pointer' placeSelf='center'>
-                        <BsCart2 />
+                        <Link to='/cart'>
+                            <BsCart2 />
+                        </Link>
                     </GridItem>
                 </Grid>
             </Box>
