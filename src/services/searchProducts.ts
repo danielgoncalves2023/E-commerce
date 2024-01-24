@@ -1,4 +1,3 @@
-import { useLocation, useNavigate } from "react-router-dom";
 import { electronics, health, fashion, products } from "../products/products";
 
 interface Product {
@@ -8,18 +7,11 @@ interface Product {
     value: string;
 }
 
-export const useFilterProducts = (): Product[] => {
-    const location = useLocation();
-    // Utiliza as informações passadas através do URL '/search?category=fashion' para mecanismo de busca
-    const queryCategory = new URLSearchParams(location.search).get('category');
-    // Utiliza as informações passadas através do Input (barra de pesquisa do site) '/search?query=casaco' para mecanismo de busca
-    const queryParams = new URLSearchParams(location.search);
-    const query = queryParams.get('query');
-
+export const useFilterProducts = (queryCategory: any, query: any): Product[] => {
     var filteredProducts: Product[] = [];
 
+    // Se o usuário fizer uma pesquisa de categoria, irá chamar essa função...
     if (queryCategory) {
-        // Filtra produtos pela categoria
         if (queryCategory === 'electronics') {
             filteredProducts.push(...electronics)
             return filteredProducts;
@@ -31,8 +23,8 @@ export const useFilterProducts = (): Product[] => {
             return filteredProducts;
         }
     }
-    
-    // Filtra produtos pelo nome ou descrição
+
+    // Se o usuário fizer uma pesquisa de por query, irá chamar essa...
     else if (query) {
 
         for (const category of [electronics, fashion, health]) {
@@ -47,5 +39,6 @@ export const useFilterProducts = (): Product[] => {
         }
     }
 
+    // No final irá retornar todos os produtos que estiveram dentro dos critérios de pesquisa.
     return filteredProducts;
 }
