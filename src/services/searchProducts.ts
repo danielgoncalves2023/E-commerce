@@ -26,7 +26,6 @@ export const useFilterProducts = (queryCategory: any, query: any): Product[] => 
 
     // Se o usuário fizer uma pesquisa de por query, irá chamar essa...
     else if (query) {
-
         for (const category of [electronics, fashion, health]) {
             for (const item of category) {
                 if (

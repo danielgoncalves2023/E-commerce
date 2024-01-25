@@ -12,7 +12,6 @@ export const ItemCartShop = () => {
                 <Stack>
                     <CardBody>
                         <Heading size='md'>iPhone exemplo</Heading>
-
                         <Text py='2'>
                             iPhone exemploiPhone exemploiPhone exemploiPhone exemploiPhone exemploiPhone exemplo
                             iPhone exemploiPhone exemploiPhone exemploiPhone exemplo.
