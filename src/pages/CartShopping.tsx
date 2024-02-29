@@ -12,7 +12,7 @@ export const CartShopping = () => {
         if (!isLoggedIn) {
             navigate(`/login`);
         }
-    }, [isLoggedIn]);
+    }, [isLoggedIn, navigate]);
 
     return (
         <>
