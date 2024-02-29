@@ -15,7 +15,7 @@ interface CardInfoProps {
 }
 
 export const SearchProducts = ({ images, name, description, value }: CardInfoProps) => {
-    const { userLogged, setUserLogged } = useContext(AppContext)
+    const { userLogged } = useContext(AppContext)
     const toast = useToast()
     const navigate = useNavigate()
 

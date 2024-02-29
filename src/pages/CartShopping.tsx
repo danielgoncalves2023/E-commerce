@@ -16,7 +16,9 @@ export const CartShopping = () => {
 
     return (
         <>
-            {isLoggedIn && <CartShop />}
+            {
+            isLoggedIn && <CartShop />
+            }
         </>
     )
 }

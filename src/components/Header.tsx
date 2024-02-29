@@ -9,7 +9,7 @@ import { AppContext } from "./AppContext";
 
 export const Header = () => {
     const { isLoggedIn, setIsLoggedIn } = useContext(AppContext)
-    const { userLogged, setUserLogged } = useContext(AppContext)
+    const { setUserLogged } = useContext(AppContext)
     const navigate = useNavigate()
     
     // Barra de pesquisa de produto

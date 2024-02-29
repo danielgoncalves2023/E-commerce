@@ -15,7 +15,7 @@ interface CardInfoProps {
 }
 
 export const CardInfo = ({ images, name, description, value }: CardInfoProps) => {
-    const { userLogged, setUserLogged } = useContext(AppContext);
+    const { userLogged } = useContext(AppContext);
     const navigate = useNavigate()
     let toast = useToast()
 

@@ -7,8 +7,8 @@ import { useNavigate } from "react-router-dom"
 import { LoginUser } from "../services/loginUser"
 
 export const Login = () => {
-    const { isLoggedIn, setIsLoggedIn } = useContext(AppContext)
-    const { userLogged, setUserLogged } = useContext(AppContext)
+    const { setIsLoggedIn } = useContext(AppContext)
+    const { setUserLogged } = useContext(AppContext)
     const navigate = useNavigate()
 
     const [email, inputEmail] = useState('')

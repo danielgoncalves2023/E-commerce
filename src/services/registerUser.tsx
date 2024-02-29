@@ -41,10 +41,10 @@ export const RegisterNewUser = (
         for (let i = 0; i < dataBaseUsers.length; i++) {
             const user = dataBaseUsers[i];
 
-            if (user.name == nameRg) {
+            if (user.name === nameRg) {
                 alert('Nome de usuário já existe')
                 break;
-            } else if (user.login.email == emailRg) {
+            } else if (user.login.email === emailRg) {
                 alert('Email já cadastrado')
                 break;
             } else {
