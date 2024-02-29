@@ -1,6 +1,5 @@
 import { db } from "../database/users/users"
 import { products } from "../database/products/products";
-import { Spinner } from "@chakra-ui/react";
 
 interface Product {
     name: string;
