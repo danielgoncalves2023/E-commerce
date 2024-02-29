@@ -23,21 +23,5 @@ export var db: User[] = [
             password: 'daniel'
         },
         cart: []
-    },
-    {
-        name: 'João',
-        login: {
-            email: 'joao@teste.com',
-            password: 'joao'
-        },
-        cart: []
-    },
-    {
-        name: 'Aline',
-        login: {
-            email: 'aline@teste.com',
-            password: 'aline'
-        },
-        cart: []
     }
 ];

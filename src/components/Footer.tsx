@@ -6,9 +6,9 @@ import { BsWhatsapp } from "react-icons/bs";
 export const Footer = () => {
     return (
         <>
-            <Box as="footer" mt="10px" p="10px" bottom='0px' position='absolute' w='100%' bg="gray.800" color="white"
+            <Box as="footer" mt="10px" p="10px" bottom='0px' position='absolute' w='100%' h='70px' bg="gray.800" color="white"
                 boxShadow="rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;">
-                <Flex justify="space-between" alignContent="center">
+                <Flex justify="space-between" align="center">
                     <Text fontWeight="bold" fontSize="1rem">&copy; 2024 Daniel Gonçalves dos Santos</Text>
                     <Flex>
                         <Link mx="2" href="https://github.com/danielgoncalves2023" isExternal>
