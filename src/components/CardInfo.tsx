@@ -1,17 +1,55 @@
-import { Button, ButtonGroup, Card, Image, Text, CardBody, CardFooter, Divider, Heading, Stack, Center } from "@chakra-ui/react"
+import {
+    Button, ButtonGroup, Card, Image, Text, CardBody, CardFooter, Divider, Heading, Stack, Center, useToast
+} from "@chakra-ui/react"
+import { AppContext } from "./AppContext";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { formatReal } from "../services/convertFormatValue";
+import { addItemCart } from "../services/cartShopping";
 
 interface CardInfoProps {
     images: string;
     name: string;
     description: string;
-    value: string;
+    value: number;
 }
 
 export const CardInfo = ({ images, name, description, value }: CardInfoProps) => {
+    const { userLogged, setUserLogged } = useContext(AppContext);
+    const navigate = useNavigate()
+    let toast = useToast()
+
+    const handleBuyButtonClick = () => {
+        if (userLogged) {
+            setTimeout(() => {
+                addItemCart(name, userLogged, navigate, toast);
+                navigate('/cart');
+            }, 500);
+        } else {
+            setTimeout(() => {
+                navigate('/login');
+            }, 500);
+
+        }
+    };
+
+    const handleAddToCartButtonClick = () => {
+        if (userLogged) {
+            setTimeout(() => {
+                addItemCart(name, userLogged, navigate, toast);
+            }, 500)
+        } else {
+            setTimeout(() => {
+                navigate('/login');
+            }, 500)
+
+        }
+    };
+
     return (
         <>
             <Center>
-                <Card maxW='260px' maxH='auto' m='20px 0'>
+                <Card maxW='260px' maxH='auto' m='20px 0' boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px;">
                     <CardBody>
                         <Center>
                             {/* Imagem do produto */}
@@ -32,7 +70,7 @@ export const CardInfo = ({ images, name, description, value }: CardInfoProps) =>
                             </Text>
                             {/* Valor do produto */}
                             <Text color='blue.600' fontSize='xl'>
-                                {value}
+                                {`${formatReal(value)}`}
                             </Text>
                         </Stack>
                     </CardBody>
@@ -41,10 +79,14 @@ export const CardInfo = ({ images, name, description, value }: CardInfoProps) =>
                         <CardFooter>
                             <ButtonGroup spacing='1'>
                                 <Center>
-                                    <Button variant='solid' colorScheme='blue' fontSize='0.8rem'>
+                                    <Button variant='solid' colorScheme='blue' fontSize='0.8rem'
+                                        onClick={handleBuyButtonClick}
+                                    >
                                         Comprar
                                     </Button>
-                                    <Button variant='ghost' colorScheme='blue' fontSize='0.8rem'>
+                                    <Button variant='ghost' colorScheme='blue' fontSize='0.8rem'
+                                        onClick={handleAddToCartButtonClick}
+                                    >
                                         Adicionar ao carrinho
                                     </Button>
                                 </Center>

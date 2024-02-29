@@ -4,6 +4,13 @@ import 'react-multi-carousel/lib/styles.css';
 import { CardInfo } from "./CardInfo";
 import { getRandomsProducts } from "../services/getRandomsProducts";
 
+interface CardInfoProps {
+    images: string;
+    name: string;
+    description: string;
+    value: number;
+}
+
 const responsive = {
     superLargeDesktop: {
         // the naming can be any, depends on you.
@@ -33,14 +40,14 @@ export const CarouselProducts = () => {
 
     return (
         <Center margin='0 25px'>
-            <Box w='100%' margin='10px auto' bg='white' borderRadius='10px' boxShadow='rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;'>
+            <Box w='100%' margin='10px auto' bg='white' borderRadius='10px' boxShadow='rgba(0, 0, 0, 0.24) 0px 3px 8px;'>
                 <Carousel
                     className="custom-carousel"
                     // centerMode={true}
-                    focusOnSelect={true}
+                    focusOnSelect={false}
                     swipeable={false}
                     draggable={true}
-                    showDots={true}
+                    showDots={false}
                     responsive={responsive}
                     ssr={true} // means to render carousel on server-side.
                     infinite={true}
@@ -53,7 +60,7 @@ export const CarouselProducts = () => {
                     dotListClass="custom-dot-list-style"
                     itemClass="carousel-item-padding-30-px"
                 >
-                    {productsToShow.map((product: any, index: any) => (
+                    {productsToShow.map((product: CardInfoProps, index: number) => (
                         <div key={index}>
                             <CardInfo
                                 images={product.images}

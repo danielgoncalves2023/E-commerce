@@ -7,18 +7,20 @@ interface Product {
     name: string;
     images: string;
     description: string;
-    value: string;
+    value: number;
 }
 
 const Search = () => {
     const location = useLocation();
+
     // Utiliza as informações passadas através do URL '/search?category=exemplo' para mecanismo de busca
     const queryCategory = new URLSearchParams(location.search).get('category');
+
     // Utiliza as informações passadas através do Input (barra de pesquisa do site) '/search?query=exemplo' para mecanismo de busca
     const queryParams = new URLSearchParams(location.search);
     const query = queryParams.get('query');
-
     const productsToDisplay: Product[] = useFilterProducts(queryCategory, query);
+
     // Essa função converte os nomes de categorias do arquivo original para a exibição em português para o usuário.
     var nameCategory = (queryCategory: string) => {
         if (queryCategory === 'electronics') {
@@ -32,16 +34,17 @@ const Search = () => {
 
     return (
         <>
-            <Box bg='white' m='20px' p='20px' fontSize='1.7rem' borderRadius='5px'>
+            <Box bg='white' m='20px' p='20px' fontSize='1.7rem' borderRadius='5px'
+            boxShadow='rgba(0, 0, 0, 0.24) 0px 3px 8px;'>
                 {
                     // Se a categoria foi selecionada, irá chamar os produtos da categoria;
-                    // Se foi uma query que foi feita, irá retornar o resultado dela.
+                    // Se foi feita uma query, irá retornar o seu resultado.
                     queryCategory ?
-                        <Text>
+                        <Text marginLeft="20px">
                             Todos os resultados da categoria: "{nameCategory(queryCategory)}".
                         </Text>
                         :
-                        <Text>
+                        <Text marginLeft="20px">
                             Resultados da pesquisa: "{query}".
                         </Text>
                 }

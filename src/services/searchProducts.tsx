@@ -1,10 +1,10 @@
-import { electronics, health, fashion, products } from "../products/products";
+import { electronics, health, fashion } from "../database/products/products";
 
 interface Product {
     name: string;
     images: string;
     description: string;
-    value: string;
+    value: number;
 }
 
 export const useFilterProducts = (queryCategory: any, query: any): Product[] => {

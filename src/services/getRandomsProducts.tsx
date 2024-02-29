@@ -1,4 +1,4 @@
-import { electronics, fashion, health } from "../products/products"
+import { electronics, fashion, health } from "../database/products/products"
 
 export const getRandomsProducts = (n: number) => {
     const allProducts = [...electronics, ...fashion, ...health];

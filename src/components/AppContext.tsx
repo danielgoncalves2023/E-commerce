@@ -1,31 +1,23 @@
-import { createContext, useState, useEffect } from "react";
-import { getAllLocalStorage } from "../services/storage";
+import { createContext, useState } from "react";
+import { db } from "../database/users/users";
 
 interface IAppContext {
-    user: string,
     isLoggedIn: boolean,
-    setIsLoggedIn: (isLoggedIn: boolean) => void
+    setIsLoggedIn: (isLoggedIn: boolean) => void,
+    userLogged: string,
+    setUserLogged: (userLogged: string) => void
 }
 
-  // para testes
-  const user = 'Daniel'
+  export const dataBaseUsers = db;
 
   export const AppContext = createContext({} as IAppContext)
   
-export const AppContextProvider = ({ children }: any) => {
-
+  export const AppContextProvider = ({ children }: any) => {
     const [ isLoggedIn, setIsLoggedIn ] = useState<boolean>(false)
-    const storage = getAllLocalStorage()
-    
-    useEffect(() => {
-        if(storage){
-          const { login } = JSON.parse(storage)
-          setIsLoggedIn(login)
-        }
-      }, [storage])
+    const [ userLogged, setUserLogged ] = useState<string>("");
 
     return (
-        <AppContext.Provider value={{ user, isLoggedIn, setIsLoggedIn }}>
+        <AppContext.Provider value={{ isLoggedIn, setIsLoggedIn, userLogged, setUserLogged }}>
             { children }
         </AppContext.Provider>
     )
