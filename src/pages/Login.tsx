@@ -21,25 +21,25 @@ export const Login = () => {
 
     return (
         <>
-            <Box bg='white' w='auto' m='auto' p='20px' h='70dvh' >
+            <Box bg='white' w='auto' m='auto' p='20px' h='90dvh' >
                 <Center>
-                    <Text fontSize='2rem'>
+                    <Text marginTop='20px' fontSize='1.7rem'>
                         Entrar
                     </Text>
                 </Center>
                 <Grid placeContent="center">
                     <FormControl isInvalid={isErrorEmail || isErrorPassword} m='30px auto'>
-                        <FormLabel fontSize='lg'>Email</FormLabel>
+                        <FormLabel fontSize='1rem'>Email</FormLabel>
                         <Input type='email' value={email} minWidth='300px' w='400px' onChange={handleEmailChange} />
-                        <FormLabel fontSize='lg' mt='10px'>Senha</FormLabel>
+                        <FormLabel fontSize='1rem' mt='10px'>Senha</FormLabel>
                         <Input type='password' value={password} onChange={handlePasswordChange} />
                         {(isErrorEmail || isErrorPassword) &&
-                            <FormErrorMessage>Email e senha obrigatórios.</FormErrorMessage>
+                            <FormErrorMessage fontSize='0.7rem'>Email e senha obrigatórios.</FormErrorMessage>
                         }
                     </FormControl>
                     <Button
                         colorScheme='blue'
-                        size='lg'
+                        size='md'
                         mt="4"
                         onClick={() => {
                             setTimeout(() => {
@@ -52,7 +52,7 @@ export const Login = () => {
                 </Button>
 
                 <Button
-                    colorScheme='blue' variant='outline' size='lg' mt="4"
+                    colorScheme='blue' variant='outline' size='md' mt="4"
                     onClick={() => {
                         setTimeout(() => {
                             navigate('/register')

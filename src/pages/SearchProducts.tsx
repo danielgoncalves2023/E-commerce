@@ -34,7 +34,7 @@ const Search = () => {
 
     return (
         <>
-            <Box bg='white' m='20px' p='20px' fontSize='1.7rem' borderRadius='5px'
+            <Box bg='white' m='20px' p='20px' fontSize='1.3rem' borderRadius='5px'
             boxShadow='rgba(0, 0, 0, 0.24) 0px 3px 8px;'>
                 {
                     // Se a categoria foi selecionada, irá chamar os produtos da categoria;
@@ -62,7 +62,7 @@ const Search = () => {
                     ))
                 ) : (
                     <Box height='400px'>
-                        <Text p='20px' m='20px' fontSize='2rem'>
+                        <Text p='20px' m='20px' fontSize='1.3rem'>
                             Nenhum produto encontrado.
                         </Text>
                     </Box>

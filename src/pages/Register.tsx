@@ -21,27 +21,27 @@ export const Register = () => {
 
     return (
         <>
-            <Box bg='white' w='auto' m='auto' p='20px' h='80dvh' >
+            <Box bg='white' w='auto' m='auto' p='20px' h='110dvh' >
                 <Center>
-                    <Text fontSize='2rem'>
+                    <Text marginTop='20px' fontSize='1.7rem'>
                         Cadastre sua conta
                     </Text>
                 </Center>
                 <Grid placeContent="center">
                     <FormControl isInvalid={isErrorEmail || isErrorPassword || isErrorUser} m='30px auto'>
-                        <FormLabel fontSize='lg' mt='10px'>Usuário</FormLabel>
+                        <FormLabel fontSize='1rem' mt='10px'>Usuário</FormLabel>
                         <Input type='email' value={user} minWidth='300px' w='400px' onChange={handleUserChange} />
-                        <FormLabel fontSize='lg' mt='10px'>Email</FormLabel>
+                        <FormLabel fontSize='1rem' mt='10px'>Email</FormLabel>
                         <Input type='email' value={email} minWidth='300px' w='400px' onChange={handleEmailChange} />
-                        <FormLabel fontSize='lg' mt='10px'>Senha</FormLabel>
+                        <FormLabel fontSize='1rem' mt='10px'>Senha</FormLabel>
                         <Input type='password' value={password} onChange={handlePasswordChange} />
                         {(isErrorEmail || isErrorPassword || isErrorUser) &&
-                            <FormErrorMessage>Todos os campos são obrigatórios.</FormErrorMessage>
+                            <FormErrorMessage fontSize='0.7rem'>Todos os campos são obrigatórios.</FormErrorMessage>
                         }
                     </FormControl>
                     <Button
                         colorScheme='blue'
-                        size='lg'
+                        size='md'
                         mt="4"
                         onClick={
                             () => {
@@ -60,7 +60,7 @@ export const Register = () => {
                     <Button
                         colorScheme='blue'
                         variant='outline'
-                        size='lg'
+                        size='md'
                         mt="4"
                         onClick={() => {
                             setTimeout(() => {

@@ -31,17 +31,18 @@ export const SearchProducts = ({ images, name, description, value }: CardInfoPro
                 >
                     <Image
                         objectFit='contain'
-                        maxW={{ base: '100%', sm: '200px' }}
+                        maxW={{ base: '100%', sm: '180px' }}
                         src={images}
                         alt={name}
+                        marginRight='30px'
                     />
                     <Stack>
                         <CardBody>
-                            <Heading size='md'>{name}</Heading>
-                            <Text py='2'>
+                            <Heading size='sm'>{name}</Heading>
+                            <Text py='2' fontSize='md'>
                                 {description}
                             </Text>
-                            <Text color='blue.600' fontSize='xl'>
+                            <Text color='blue.600' fontSize='md'>
                                 {`${formatReal(value)}`}
                             </Text>
                         </CardBody>

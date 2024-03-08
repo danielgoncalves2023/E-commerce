@@ -31,17 +31,19 @@ export const Header = () => {
     return (
         <>
             <Box bg='#FFD700' textAlign='center' p='10px' mb='10px' boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px;">
-                <Grid w='100%' h='50px' placeContent='center' templateColumns='repeat(5, 1fr)' gap='3'
-                margin='2px auto 15px' padding='0 30px'>
+                <Grid w='100%' h='30px' alignItems='center' templateColumns='repeat(5, 1fr)' gap='2'
+                margin='5px auto 10px' padding='0 30px'>
                     <GridItem rowSpan={1} colSpan={2} placeSelf='self-start'>
                         <Link to='/'>
-                            <Image src='/logo-mercadolivre.png' alt='logo mercado livre' w='150px' minW='120px' />
+                            <Image src='/logo-mercadolivre.png' alt='logo mercado livre' w='120px' minW='120px' />
                         </Link>
                     </GridItem>
                     <GridItem rowSpan={1} colSpan={3}>
-                        <InputGroup borderRadius='8px' boxSizing='border-box' boxShadow='rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;'>
+                        <InputGroup borderRadius='8px' boxSizing='border-box'
+                        boxShadow='rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;'>
                             <Input
-                                fontSize='1.2rem'
+                                fontSize='1rem'
+                                h='30px'
                                 onChange={(e) => setSearchBar(e.target.value)}
                                 onKeyDown={(e) => {
                                     // Verifica se a tecla pressionada é Enter, e faz pesquisa
@@ -56,23 +58,23 @@ export const Header = () => {
                                 bg='white'
                                 placeholder="Buscar produtos..."
                             />
-                            <InputRightElement borderLeft='1px solid lightgray'>
+                            <InputRightElement height='30px' borderLeft='1px solid lightgray'>
                                 <Link to={`/search?query=${searchBar}`}>
-                                    <GoSearch size='1.2rem' cursor='pointer' />
+                                    <GoSearch size='1rem' cursor='pointer' />
                                 </Link>
                             </InputRightElement>
                         </InputGroup>
                     </GridItem>
                 </Grid>
 
-                <Grid w='100%' templateColumns='repeat(8, 1fr)' gap='2'>
+                <Grid w='100%' templateColumns='repeat(8, 1fr)' gap='3' paddingTop='5px'>
                     {
                         isLoggedIn ?
                             (
                                 <>
                                     <GridItem colSpan={6} marginLeft='20px' w='150px'>
                                         <Select
-                                            fontSize='1.2rem'
+                                            fontSize='1rem'
                                             placeholder="Categorias"
                                             value=''
                                             border='none'
@@ -83,12 +85,12 @@ export const Header = () => {
                                             <option value='fashion'>Moda</option>
                                         </Select>
                                     </GridItem>
-                                    <GridItem fontSize='1.2rem' colSpan={1} cursor='pointer' placeSelf='center'>
+                                    <GridItem fontSize='1rem' colSpan={1} cursor='pointer' placeSelf='center'>
                                         <Link to='/' onClick={() => logout()}>Desconectar</Link>
                                     </GridItem>
                                     <GridItem colSpan={1} cursor='pointer' placeSelf='center'>
                                         <Link to='/cart'>
-                                            <BsCart2 size='1.5rem' />
+                                            <BsCart2 size='1.2rem' />
                                         </Link>
                                     </GridItem>
                                 </>
@@ -98,7 +100,7 @@ export const Header = () => {
                                 <>
                                     <GridItem colSpan={4} marginLeft='20px' w='150px'>
                                         <Select
-                                            fontSize='1.2rem'
+                                            fontSize='1rem'
                                             placeholder="Categorias"
                                             value=''
                                             border='none'
@@ -109,15 +111,15 @@ export const Header = () => {
                                             <option value='fashion'>Moda</option>
                                         </Select>
                                     </GridItem>
-                                    <GridItem whiteSpace="nowrap" fontSize='1.2rem' colSpan={2} cursor='pointer' placeSelf='center' w='120px'>
+                                    <GridItem whiteSpace="nowrap" fontSize='1rem' colSpan={2} cursor='pointer' placeSelf='center' w='120px'>
                                         <Link to='/register'>Crie sua conta</Link>
                                     </GridItem>
-                                    <GridItem fontSize='1.2rem' colSpan={1} cursor='pointer' placeSelf='center'>
+                                    <GridItem fontSize='1rem' colSpan={1} cursor='pointer' placeSelf='center'>
                                         <Link to='/login'>Entre</Link>
                                     </GridItem>
                                     <GridItem colSpan={1} cursor='pointer' placeSelf='center'>
-                                        <Link to='/cart'>
-                                            <BsCart2 size='1.5rem' />
+                                        <Link to='/cart' content="1">
+                                            <BsCart2 size='1.2rem' />
                                         </Link>
                                     </GridItem>
                                 </>

@@ -57,19 +57,19 @@ export const CardInfo = ({ images, name, description, value }: CardInfoProps) =>
                                 src={images}
                                 alt={name}
                                 borderRadius='sm'
-                                boxSize='10rem'
+                                boxSize='8rem'
                                 objectFit='contain'
                             />
                         </Center>
                         <Stack mt='4' spacing='2'>
                             {/* Título do produto */}
-                            <Heading fontSize='1rem' padding='5px' h='40px'>{name}</Heading>
+                            <Heading fontSize='0.9rem' padding='5px' h='40px'>{name}</Heading>
                             {/* Descrição do produto */}
-                            <Text maxH='140px' overflowY='scroll'>
+                            <Text fontSize='0.9rem' maxH='140px' overflowY='scroll'>
                                 {description}
                             </Text>
                             {/* Valor do produto */}
-                            <Text color='blue.600' fontSize='xl'>
+                            <Text color='blue.600' fontSize='1.2rem'>
                                 {`${formatReal(value)}`}
                             </Text>
                         </Stack>
@@ -79,12 +79,12 @@ export const CardInfo = ({ images, name, description, value }: CardInfoProps) =>
                         <CardFooter>
                             <ButtonGroup spacing='1'>
                                 <Center>
-                                    <Button variant='solid' colorScheme='blue' fontSize='0.8rem'
+                                    <Button variant='solid' colorScheme='blue' fontSize='0.7rem'
                                         onClick={handleBuyButtonClick}
                                     >
                                         Comprar
                                     </Button>
-                                    <Button variant='ghost' colorScheme='blue' fontSize='0.8rem'
+                                    <Button variant='ghost' colorScheme='blue' fontSize='0.7rem'
                                         onClick={handleAddToCartButtonClick}
                                     >
                                         Adicionar ao carrinho
