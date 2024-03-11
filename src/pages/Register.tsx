@@ -4,8 +4,13 @@ import {
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { RegisterNewUser } from "../services/registerUser";
+import { useMediaQuery } from 'react-responsive';
 
 export const Register = () => {
+    const responsiveMedia = useMediaQuery({
+        query: '(max-device-width: 490px)'
+    });
+
     const navigate = useNavigate()
 
     const [email, inputEmail] = useState('')
@@ -21,6 +26,7 @@ export const Register = () => {
 
     return (
         <>
+
             <Box bg='white' w='auto' m='auto' p='20px' h='110dvh' >
                 <Center>
                     <Text marginTop='20px' fontSize='1.7rem'>
@@ -28,17 +34,35 @@ export const Register = () => {
                     </Text>
                 </Center>
                 <Grid placeContent="center">
-                    <FormControl isInvalid={isErrorEmail || isErrorPassword || isErrorUser} m='30px auto'>
-                        <FormLabel fontSize='1rem' mt='10px'>Usuário</FormLabel>
-                        <Input type='email' value={user} minWidth='300px' w='400px' onChange={handleUserChange} />
-                        <FormLabel fontSize='1rem' mt='10px'>Email</FormLabel>
-                        <Input type='email' value={email} minWidth='300px' w='400px' onChange={handleEmailChange} />
-                        <FormLabel fontSize='1rem' mt='10px'>Senha</FormLabel>
-                        <Input type='password' value={password} onChange={handlePasswordChange} />
-                        {(isErrorEmail || isErrorPassword || isErrorUser) &&
-                            <FormErrorMessage fontSize='0.7rem'>Todos os campos são obrigatórios.</FormErrorMessage>
-                        }
-                    </FormControl>
+                    {
+                        responsiveMedia ?
+                            (
+                                <FormControl isInvalid={isErrorEmail || isErrorPassword || isErrorUser} m='30px auto'>
+                                    <FormLabel fontSize='1rem' mt='10px'>Usuário</FormLabel>
+                                    <Input type='email' value={user} w='300px' onChange={handleUserChange} />
+                                    <FormLabel fontSize='1rem' mt='10px'>Email</FormLabel>
+                                    <Input type='email' value={email} w='300px' onChange={handleEmailChange} />
+                                    <FormLabel fontSize='1rem' mt='10px'>Senha</FormLabel>
+                                    <Input type='password' value={password} onChange={handlePasswordChange} />
+                                    {(isErrorEmail || isErrorPassword || isErrorUser) &&
+                                        <FormErrorMessage fontSize='0.7rem'>Todos os campos são obrigatórios.</FormErrorMessage>
+                                    }
+                                </FormControl>
+                            ) :
+                            (
+                                <FormControl isInvalid={isErrorEmail || isErrorPassword || isErrorUser} m='30px auto'>
+                                    <FormLabel fontSize='1rem' mt='10px'>Usuário</FormLabel>
+                                    <Input type='email' value={user} minWidth='300px' w='400px' onChange={handleUserChange} />
+                                    <FormLabel fontSize='1rem' mt='10px'>Email</FormLabel>
+                                    <Input type='email' value={email} minWidth='300px' w='400px' onChange={handleEmailChange} />
+                                    <FormLabel fontSize='1rem' mt='10px'>Senha</FormLabel>
+                                    <Input type='password' value={password} onChange={handlePasswordChange} />
+                                    {(isErrorEmail || isErrorPassword || isErrorUser) &&
+                                        <FormErrorMessage fontSize='0.7rem'>Todos os campos são obrigatórios.</FormErrorMessage>
+                                    }
+                                </FormControl>
+                            )
+                    }
                     <Button
                         colorScheme='blue'
                         size='md'
@@ -72,6 +96,7 @@ export const Register = () => {
                     </Button>
                 </Grid>
             </Box>
+
         </>
     )
 }

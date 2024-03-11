@@ -43,11 +43,11 @@ export const CarouselProducts = () => {
             <Box w='100%' margin='10px auto' bg='white' borderRadius='10px' boxShadow='rgba(0, 0, 0, 0.24) 0px 3px 8px;'>
                 <Carousel
                     className="custom-carousel"
-                    // centerMode={true}
+                    centerMode={false}
                     focusOnSelect={false}
-                    swipeable={false}
+                    swipeable={true}
                     draggable={true}
-                    showDots={false}
+                    showDots={true}
                     responsive={responsive}
                     ssr={true} // means to render carousel on server-side.
                     infinite={true}
@@ -56,7 +56,7 @@ export const CarouselProducts = () => {
                     customTransition="transform 0.5s ease-in-out"
                     transitionDuration={500}
                     containerClass="carousel-container"
-                    // removeArrowOnDeviceType={["tablet", "mobile"]}
+                    removeArrowOnDeviceType={["tablet", "mobile"]}
                     dotListClass="custom-dot-list-style"
                     itemClass="carousel-item-padding-30-px"
                 >

@@ -5,8 +5,13 @@ import { useContext, useState } from "react"
 import { AppContext } from "../components/AppContext"
 import { useNavigate } from "react-router-dom"
 import { LoginUser } from "../services/loginUser"
+import { useMediaQuery } from 'react-responsive';
 
 export const Login = () => {
+    const responsiveMedia = useMediaQuery({
+        query: '(max-device-width: 490px)'
+    });
+
     const { setIsLoggedIn } = useContext(AppContext)
     const { setUserLogged } = useContext(AppContext)
     const navigate = useNavigate()
@@ -28,15 +33,31 @@ export const Login = () => {
                     </Text>
                 </Center>
                 <Grid placeContent="center">
-                    <FormControl isInvalid={isErrorEmail || isErrorPassword} m='30px auto'>
-                        <FormLabel fontSize='1rem'>Email</FormLabel>
-                        <Input type='email' value={email} minWidth='300px' w='400px' onChange={handleEmailChange} />
-                        <FormLabel fontSize='1rem' mt='10px'>Senha</FormLabel>
-                        <Input type='password' value={password} onChange={handlePasswordChange} />
-                        {(isErrorEmail || isErrorPassword) &&
-                            <FormErrorMessage fontSize='0.7rem'>Email e senha obrigatórios.</FormErrorMessage>
-                        }
-                    </FormControl>
+                    {
+                        responsiveMedia ?
+                        (
+                            <FormControl isInvalid={isErrorEmail || isErrorPassword} m='30px auto'>
+                            <FormLabel fontSize='1rem'>Email</FormLabel>
+                            <Input type='email' value={email} w='300px' onChange={handleEmailChange} />
+                            <FormLabel fontSize='1rem' mt='10px'>Senha</FormLabel>
+                            <Input type='password' value={password} w='300px' onChange={handlePasswordChange} />
+                            {(isErrorEmail || isErrorPassword) &&
+                                <FormErrorMessage fontSize='0.7rem'>Email e senha obrigatórios.</FormErrorMessage>
+                            }
+                        </FormControl>
+                        ) :
+                        (
+                            <FormControl isInvalid={isErrorEmail || isErrorPassword} m='30px auto'>
+                            <FormLabel fontSize='1rem'>Email</FormLabel>
+                            <Input type='email' value={email} minWidth='300px' w='400px' onChange={handleEmailChange} />
+                            <FormLabel fontSize='1rem' mt='10px'>Senha</FormLabel>
+                            <Input type='password' value={password} onChange={handlePasswordChange} />
+                            {(isErrorEmail || isErrorPassword) &&
+                                <FormErrorMessage fontSize='0.7rem'>Email e senha obrigatórios.</FormErrorMessage>
+                            }
+                        </FormControl>
+                        )
+                    }
                     <Button
                         colorScheme='blue'
                         size='md'
