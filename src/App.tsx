@@ -8,7 +8,7 @@ import { useMediaQuery } from 'react-responsive';
 import { SizeNotSupported } from './pages/SizeNotSupported';
 
 function App() {
-  const isDesktopOrLaptop = useMediaQuery({
+  const NotIsDesktopOrLaptop = useMediaQuery({
     query: '(max-device-width: 420px)'
   });
 
@@ -17,7 +17,7 @@ function App() {
       <BrowserRouter>
         <ChakraProvider>
           {
-            isDesktopOrLaptop ?
+            NotIsDesktopOrLaptop ?
               (
                 <SizeNotSupported />
               ) :
