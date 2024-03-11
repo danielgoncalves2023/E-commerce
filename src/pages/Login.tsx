@@ -5,12 +5,12 @@ import { useContext, useState } from "react"
 import { AppContext } from "../components/AppContext"
 import { useNavigate } from "react-router-dom"
 import { LoginUser } from "../services/loginUser"
-import { useMediaQuery } from 'react-responsive';
+// import { useMediaQuery } from 'react-responsive';
 
 export const Login = () => {
-    const responsiveMedia = useMediaQuery({
-        query: '(max-device-width: 490px)'
-    });
+    // const responsiveMedia = useMediaQuery({
+    //     query: '(max-device-width: 490px)'
+    // });
 
     const { setIsLoggedIn } = useContext(AppContext)
     const { setUserLogged } = useContext(AppContext)
@@ -26,7 +26,7 @@ export const Login = () => {
 
     return (
         <>
-            {
+            {/* {
                 responsiveMedia ?
                     (
                         <Box bg='white' w='auto' m='auto' p='20px' h='170dvh'>
@@ -70,7 +70,7 @@ export const Login = () => {
                             </Grid>
                         </Box >
                     ) :
-                    (
+                    ( */}
                         <Box bg='white' w='auto' m='auto' p='20px' h='100dvh'>
                             <Center>
                                 <Text marginTop='20px' fontSize='1.7rem'>
@@ -111,8 +111,8 @@ export const Login = () => {
                                 </Button>
                             </Grid>
                         </Box >
-                    )
-            }
+                    {/* )
+            } */}
         </>
     )
 }
