@@ -26,17 +26,16 @@ export const Register = () => {
 
     return (
         <>
-
-            <Box bg='white' w='auto' m='auto' p='20px' h='110dvh' >
-                <Center>
-                    <Text marginTop='20px' fontSize='1.7rem'>
-                        Cadastre sua conta
-                    </Text>
-                </Center>
-                <Grid placeContent="center">
-                    {
-                        responsiveMedia ?
-                            (
+            {
+                responsiveMedia ?
+                    (
+                        <Box bg='white' w='auto' m='auto' p='20px' h='170dvh'>
+                            <Center>
+                                <Text marginTop='20px' fontSize='1.7rem'>
+                                    Cadastre sua conta
+                                </Text>
+                            </Center>
+                            <Grid placeContent="center">
                                 <FormControl isInvalid={isErrorEmail || isErrorPassword || isErrorUser} m='30px auto'>
                                     <FormLabel fontSize='1rem' mt='10px'>Usuário</FormLabel>
                                     <Input type='email' value={user} w='300px' onChange={handleUserChange} />
@@ -48,8 +47,48 @@ export const Register = () => {
                                         <FormErrorMessage fontSize='0.7rem'>Todos os campos são obrigatórios.</FormErrorMessage>
                                     }
                                 </FormControl>
-                            ) :
-                            (
+                                <Button
+                                    colorScheme='blue'
+                                    size='md'
+                                    mt="4"
+                                    onClick={
+                                        () => {
+                                            setTimeout(() => {
+                                                if (isErrorEmail || isErrorPassword || isErrorUser) {
+                                                    alert('Favor preencher todos os campos')
+                                                } else {
+                                                    RegisterNewUser(user, email, password, navigate)
+                                                }
+                                            }, 400);
+                                        }
+                                    }
+                                >
+                                    Criar conta
+                                </Button>
+                                <Button
+                                    colorScheme='blue'
+                                    variant='outline'
+                                    size='md'
+                                    mt="4"
+                                    onClick={() => {
+                                        setTimeout(() => {
+                                            navigate('/login')
+                                        }, 400);
+                                    }}
+                                >
+                                    Já tenho conta
+                                </Button>
+                            </Grid>
+                        </Box>
+                    ) :
+                    (
+                        <Box bg='white' w='auto' m='auto' p='20px' h='110dvh'>
+                            <Center>
+                                <Text marginTop='20px' fontSize='1.7rem'>
+                                    Cadastre sua conta
+                                </Text>
+                            </Center>
+                            <Grid placeContent="center">
                                 <FormControl isInvalid={isErrorEmail || isErrorPassword || isErrorUser} m='30px auto'>
                                     <FormLabel fontSize='1rem' mt='10px'>Usuário</FormLabel>
                                     <Input type='email' value={user} minWidth='300px' w='400px' onChange={handleUserChange} />
@@ -61,42 +100,41 @@ export const Register = () => {
                                         <FormErrorMessage fontSize='0.7rem'>Todos os campos são obrigatórios.</FormErrorMessage>
                                     }
                                 </FormControl>
-                            )
-                    }
-                    <Button
-                        colorScheme='blue'
-                        size='md'
-                        mt="4"
-                        onClick={
-                            () => {
-                                setTimeout(() => {
-                                    if (isErrorEmail || isErrorPassword || isErrorUser) {
-                                        alert('Favor preencher todos os campos')
-                                    } else {
-                                        RegisterNewUser(user, email, password, navigate)
+                                <Button
+                                    colorScheme='blue'
+                                    size='md'
+                                    mt="4"
+                                    onClick={
+                                        () => {
+                                            setTimeout(() => {
+                                                if (isErrorEmail || isErrorPassword || isErrorUser) {
+                                                    alert('Favor preencher todos os campos')
+                                                } else {
+                                                    RegisterNewUser(user, email, password, navigate)
+                                                }
+                                            }, 400);
+                                        }
                                     }
-                                }, 400);
-                            }
-                        }
-                    >
-                        Criar conta
-                    </Button>
-                    <Button
-                        colorScheme='blue'
-                        variant='outline'
-                        size='md'
-                        mt="4"
-                        onClick={() => {
-                            setTimeout(() => {
-                                navigate('/login')
-                            }, 400);
-                        }}
-                    >
-                        Já tenho conta
-                    </Button>
-                </Grid>
-            </Box>
-
+                                >
+                                    Criar conta
+                                </Button>
+                                <Button
+                                    colorScheme='blue'
+                                    variant='outline'
+                                    size='md'
+                                    mt="4"
+                                    onClick={() => {
+                                        setTimeout(() => {
+                                            navigate('/login')
+                                        }, 400);
+                                    }}
+                                >
+                                    Já tenho conta
+                                </Button>
+                            </Grid>
+                        </Box>
+                    )
+            }
         </>
     )
 }

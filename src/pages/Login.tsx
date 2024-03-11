@@ -26,63 +26,93 @@ export const Login = () => {
 
     return (
         <>
-            <Box bg='white' w='auto' m='auto' p='20px' h='90dvh' >
-                <Center>
-                    <Text marginTop='20px' fontSize='1.7rem'>
-                        Entrar
-                    </Text>
-                </Center>
-                <Grid placeContent="center">
-                    {
-                        responsiveMedia ?
-                        (
-                            <FormControl isInvalid={isErrorEmail || isErrorPassword} m='30px auto'>
-                            <FormLabel fontSize='1rem'>Email</FormLabel>
-                            <Input type='email' value={email} w='300px' onChange={handleEmailChange} />
-                            <FormLabel fontSize='1rem' mt='10px'>Senha</FormLabel>
-                            <Input type='password' value={password} w='300px' onChange={handlePasswordChange} />
-                            {(isErrorEmail || isErrorPassword) &&
-                                <FormErrorMessage fontSize='0.7rem'>Email e senha obrigatórios.</FormErrorMessage>
-                            }
-                        </FormControl>
-                        ) :
-                        (
-                            <FormControl isInvalid={isErrorEmail || isErrorPassword} m='30px auto'>
-                            <FormLabel fontSize='1rem'>Email</FormLabel>
-                            <Input type='email' value={email} minWidth='300px' w='400px' onChange={handleEmailChange} />
-                            <FormLabel fontSize='1rem' mt='10px'>Senha</FormLabel>
-                            <Input type='password' value={password} onChange={handlePasswordChange} />
-                            {(isErrorEmail || isErrorPassword) &&
-                                <FormErrorMessage fontSize='0.7rem'>Email e senha obrigatórios.</FormErrorMessage>
-                            }
-                        </FormControl>
-                        )
-                    }
-                    <Button
-                        colorScheme='blue'
-                        size='md'
-                        mt="4"
-                        onClick={() => {
-                            setTimeout(() => {
-                                LoginUser(email, password, setIsLoggedIn, setUserLogged, navigate)
-                            }, 400)
-                            }
-                        }
-                    >
-                    Continuar
-                </Button>
-
-                <Button
-                    colorScheme='blue' variant='outline' size='md' mt="4"
-                    onClick={() => {
-                        setTimeout(() => {
-                            navigate('/register')
-                        }, 400);
-                    }}
-                >Criar conta
-                </Button>
-            </Grid>
-        </Box >
+            {
+                responsiveMedia ?
+                    (
+                        <Box bg='white' w='auto' m='auto' p='20px' h='140dvh'>
+                            <Center>
+                                <Text marginTop='20px' fontSize='1.7rem'>
+                                    Entrar
+                                </Text>
+                            </Center>
+                            <Grid placeContent="center" >
+                                <FormControl isInvalid={isErrorEmail || isErrorPassword} m='30px auto'>
+                                    <FormLabel fontSize='1rem'>Email</FormLabel>
+                                    <Input type='email' value={email} w='300px' onChange={handleEmailChange} />
+                                    <FormLabel fontSize='1rem' mt='10px'>Senha</FormLabel>
+                                    <Input type='password' value={password} w='300px' onChange={handlePasswordChange} />
+                                    {(isErrorEmail || isErrorPassword) &&
+                                        <FormErrorMessage fontSize='0.7rem'>Email e senha obrigatórios.</FormErrorMessage>
+                                    }
+                                </FormControl>
+                                <Button
+                                    colorScheme='blue'
+                                    size='md'
+                                    mt="4"
+                                    onClick={() => {
+                                        setTimeout(() => {
+                                            LoginUser(email, password, setIsLoggedIn, setUserLogged, navigate)
+                                        }, 400)
+                                    }
+                                    }
+                                >
+                                    Continuar
+                                </Button>
+                                <Button
+                                    colorScheme='blue' variant='outline' size='md' mt="4"
+                                    onClick={() => {
+                                        setTimeout(() => {
+                                            navigate('/register')
+                                        }, 400);
+                                    }}
+                                >Criar conta
+                                </Button>
+                            </Grid>
+                        </Box >
+                    ) :
+                    (
+                        <Box bg='white' w='auto' m='auto' p='20px' h='100dvh'>
+                            <Center>
+                                <Text marginTop='20px' fontSize='1.7rem'>
+                                    Entrar
+                                </Text>
+                            </Center>
+                            <Grid placeContent="center" >
+                                <FormControl isInvalid={isErrorEmail || isErrorPassword} m='30px auto'>
+                                    <FormLabel fontSize='1rem'>Email</FormLabel>
+                                    <Input type='email' value={email} minWidth='300px' w='400px' onChange={handleEmailChange} />
+                                    <FormLabel fontSize='1rem' mt='10px'>Senha</FormLabel>
+                                    <Input type='password' value={password} onChange={handlePasswordChange} />
+                                    {(isErrorEmail || isErrorPassword) &&
+                                        <FormErrorMessage fontSize='0.7rem'>Email e senha obrigatórios.</FormErrorMessage>
+                                    }
+                                </FormControl>
+                                <Button
+                                    colorScheme='blue'
+                                    size='md'
+                                    mt="4"
+                                    onClick={() => {
+                                        setTimeout(() => {
+                                            LoginUser(email, password, setIsLoggedIn, setUserLogged, navigate)
+                                        }, 400)
+                                    }
+                                    }
+                                >
+                                    Continuar
+                                </Button>
+                                <Button
+                                    colorScheme='blue' variant='outline' size='md' mt="4"
+                                    onClick={() => {
+                                        setTimeout(() => {
+                                            navigate('/register')
+                                        }, 400);
+                                    }}
+                                >Criar conta
+                                </Button>
+                            </Grid>
+                        </Box >
+                    )
+            }
         </>
     )
 }
