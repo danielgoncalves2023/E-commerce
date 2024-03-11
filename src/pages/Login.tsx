@@ -29,7 +29,7 @@ export const Login = () => {
             {
                 responsiveMedia ?
                     (
-                        <Box bg='white' w='auto' m='auto' p='20px' h='140dvh'>
+                        <Box bg='white' w='auto' m='auto' p='20px' h='170dvh'>
                             <Center>
                                 <Text marginTop='20px' fontSize='1.7rem'>
                                     Entrar

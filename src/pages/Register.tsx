@@ -29,7 +29,7 @@ export const Register = () => {
             {
                 responsiveMedia ?
                     (
-                        <Box bg='white' w='auto' m='auto' p='20px' h='170dvh'>
+                        <Box bg='white' w='auto' m='auto' p='20px' h='200dvh'>
                             <Center>
                                 <Text marginTop='20px' fontSize='1.7rem'>
                                     Cadastre sua conta
