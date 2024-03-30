@@ -1,9 +1,25 @@
-import { CarouselProducts } from "../components/CarouselProducts";
 import 'react-multi-carousel/lib/styles.css';
+import { useMediaQuery } from 'react-responsive';
+import { CarouselProducts } from "../components/LargeWidth/CarouselProducts";
+import { CarouselProductsSmall } from "../components/SmallWidth/CarouselProducts";
 
 const Home = () => {
-    return(
-            <CarouselProducts />
+    const responsiveMode = useMediaQuery({
+        query: '(max-device-width: 420px)'
+    });
+
+    return (
+        <>
+            {
+                responsiveMode ?
+                    (
+                        <CarouselProductsSmall />
+                    ) :
+                    (
+                        <CarouselProducts />
+                    )
+            }
+        </>
     )
 }
 

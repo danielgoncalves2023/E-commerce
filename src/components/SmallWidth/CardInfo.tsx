@@ -1,11 +1,11 @@
 import {
     Button, ButtonGroup, Card, Image, Text, CardBody, CardFooter, Divider, Heading, Stack, Center, useToast
 } from "@chakra-ui/react"
-import { AppContext } from "./AppContext";
+import { AppContext } from "../AppContext";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { formatReal } from "../services/convertFormatValue";
-import { addItemCart } from "../services/cartShopping";
+import { formatReal } from "../../services/convertFormatValue";
+import { addItemCart } from "../../services/cartShopping";
 
 interface CardInfoProps {
     images: string;
@@ -14,7 +14,7 @@ interface CardInfoProps {
     value: number;
 }
 
-export const CardInfo = ({ images, name, description, value }: CardInfoProps) => {
+export const CardInfoSmall = ({ images, name, description, value }: CardInfoProps) => {
     const { userLogged } = useContext(AppContext);
     const navigate = useNavigate()
     let toast = useToast()
@@ -49,7 +49,7 @@ export const CardInfo = ({ images, name, description, value }: CardInfoProps) =>
     return (
         <>
             <Center>
-                <Card maxW='260px' maxH='auto' m='20px 0' boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+                <Card maxW='260px' maxH='auto' m='0' boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px;">
                     <CardBody>
                         <Center>
                             {/* Imagem do produto */}
@@ -57,19 +57,19 @@ export const CardInfo = ({ images, name, description, value }: CardInfoProps) =>
                                 src={images}
                                 alt={name}
                                 borderRadius='sm'
-                                boxSize='8rem'
+                                boxSize='4rem'
                                 objectFit='contain'
                             />
                         </Center>
-                        <Stack mt='4' spacing='2'>
+                        <Stack mt='4' spacing='1'>
                             {/* Título do produto */}
-                            <Heading fontSize='0.9rem' padding='5px' h='40px'>{name}</Heading>
+                            <Heading fontSize='0.7rem' padding='2px' h='40px'>{name}</Heading>
                             {/* Descrição do produto */}
-                            <Text fontSize='0.9rem' maxH='140px' overflowY='scroll'>
+                            <Text fontSize='0.7rem' h='auto' overflow='hidden' noOfLines={6}>
                                 {description}
                             </Text>
                             {/* Valor do produto */}
-                            <Text color='blue.600' fontSize='1.2rem'>
+                            <Text color='blue.600' fontSize='0.8rem'>
                                 {`${formatReal(value)}`}
                             </Text>
                         </Stack>
@@ -79,15 +79,15 @@ export const CardInfo = ({ images, name, description, value }: CardInfoProps) =>
                         <CardFooter>
                             <ButtonGroup spacing='1'>
                                 <Center>
-                                    <Button variant='solid' colorScheme='blue' fontSize='0.7rem'
+                                    <Button variant='solid' colorScheme='blue' w='50px' h='30px' fontSize='0.6rem'
                                         onClick={handleBuyButtonClick}
                                     >
                                         Comprar
                                     </Button>
-                                    <Button variant='ghost' colorScheme='blue' fontSize='0.7rem'
+                                    <Button variant='ghost' colorScheme='blue' w='50px' h='30px' fontSize='0.6rem'
                                         onClick={handleAddToCartButtonClick}
                                     >
-                                        Adicionar ao carrinho
+                                        Adicionar
                                     </Button>
                                 </Center>
                             </ButtonGroup>

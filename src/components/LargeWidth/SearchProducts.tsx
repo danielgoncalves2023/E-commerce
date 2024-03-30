@@ -2,10 +2,10 @@ import {
     Card, Image, CardBody, CardFooter, Stack, Heading, Text, Button, Box, ButtonGroup, Center, useToast
 } from "@chakra-ui/react"
 import { useContext } from "react";
-import { AppContext } from "./AppContext";
-import { formatReal } from "../services/convertFormatValue";
+import { AppContext } from "../AppContext";
+import { formatReal } from "../../services/convertFormatValue";
 import { useNavigate } from "react-router-dom";
-import { addItemCart } from "../services/cartShopping";
+import { addItemCart } from "../../services/cartShopping";
 
 interface CardInfoProps {
     images: string;

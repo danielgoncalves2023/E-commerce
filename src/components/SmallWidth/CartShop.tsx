@@ -2,12 +2,12 @@ import {
     Box, Center, Flex, Image, Text, Stack, Button, Card, CardBody, CardFooter, Heading, useToast, Divider,
     NumberInput, NumberInputField, NumberInputStepper, NumberIncrementStepper, NumberDecrementStepper, Spinner
 } from "@chakra-ui/react";
-import { db } from "../database/users/users";
+import { db } from "../../database/users/users";
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
-import { formatReal } from "../services/convertFormatValue";
-import { removeItemCart } from "../services/cartShopping";
-import { AppContext } from "./AppContext";
+import { formatReal } from "../../services/convertFormatValue";
+import { removeItemCart } from "../../services/cartShopping";
+import { AppContext } from "../AppContext";
 
 interface Product {
     name: string;
@@ -17,7 +17,7 @@ interface Product {
     quantity: number;
 }
 
-export const CartShop = () => {
+export const CartShopSmall = () => {
     const { userLogged } = useContext(AppContext);
     const navigate = useNavigate();
     const toast = useToast();
@@ -101,21 +101,23 @@ export const CartShop = () => {
                                 direction={{ base: 'column', sm: 'row' }}
                                 overflow='hidden'
                                 variant='outline'
-                                m='20px'
-                                p='20px'
+                                m='10px'
+                                p='5px'
                                 boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px;"
                             >
                                 <Image
                                     objectFit='contain'
-                                    maxW={{ base: '100%', sm: '170px' }}
+                                    m='10px auto'
+                                    maxW={{ base: '50%', sm: '170px' }}
                                     src={item.images}
                                     alt={item.name}
-                                    marginRight='50px'
                                 />
                                 <Stack>
                                     <CardBody>
                                         <Heading size='sm'>{item.name}</Heading>
-                                        <Text py='2' fontSize='0.8rem'>{item.description}</Text>
+                                        <Text py='1' fontSize='0.8rem' overflow='hidden' noOfLines={3}>
+                                            {item.description}
+                                            </Text>
                                         <Button fontSize='0.8rem' colorScheme='teal' variant='link' onClick={() => handleRemoveItem(item.name)}>
                                             Excluir item
                                         </Button>
@@ -138,7 +140,7 @@ export const CartShop = () => {
                                                     <NumberDecrementStepper />
                                                 </NumberInputStepper>
                                             </NumberInput>
-                                            <Text fontSize='2xl'>{formatReal(item.value * item.quantity)}</Text>
+                                            <Text fontSize='xl'>{formatReal(item.value * item.quantity)}</Text>
                                         </Flex>
                                     </CardFooter>
                                 </Stack>
@@ -151,11 +153,11 @@ export const CartShop = () => {
                     (
                         <Box background="white" w="100%" h="400px" boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px;">
                             <Center>
-                                <Flex direction="column" alignItems="center" w="70%">
-                                    <Heading m="50px 0" fontSize='1.7rem'>Carrinho de compras</Heading>
+                                <Flex direction="column" alignItems="center" w="80%">
+                                    <Heading m="40px 0" fontSize='1.5rem'>Carrinho de compras</Heading>
 
                                     <Flex justify="start" w="100%">
-                                        <Text fontSize='2xl' w="300px" textAlign="start">
+                                        <Text fontSize='xl' w="300px" textAlign="start">
                                             Produtos ({totalProducts})
                                         </Text>
                                     </Flex>

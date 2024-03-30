@@ -5,12 +5,11 @@ import { useContext, useState } from "react";
 import { BsCart2 } from "react-icons/bs";
 import { GoSearch } from "react-icons/go";
 import { Link, useNavigate } from "react-router-dom";
-import { AppContext } from "./AppContext";
-import { db } from "../database/users/users";
+import { AppContext } from "../AppContext";
 
 export const Header = () => {
     const { isLoggedIn, setIsLoggedIn } = useContext(AppContext)
-    const { userLogged, setUserLogged } = useContext(AppContext)
+    const { setUserLogged } = useContext(AppContext)
     const navigate = useNavigate()
 
     // Barra de pesquisa de produto
@@ -29,31 +28,21 @@ export const Header = () => {
         navigate('/')
     }
 
-    let userIndex: number = -1;
-    for (let i = 0; i < db.length; i++) {
-        if (userLogged === db[i].login.email) {
-            console.log(db[i].cart);
-            userIndex = i;
-            break; // Sair do loop se as credenciais forem encontradas
-        }
-    }
-    
     return (
         <>
-            {/* Barra superior */}
             <Box bg='#FFD700' textAlign='center' p='10px' mb='10px' boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px;">
-                <Grid w='100%' h='30px' alignItems='center' templateColumns='repeat(5, 1fr)'
-                    margin='5px auto 10px' padding='0 20px' justifyContent='space-between'>
+                <Grid w='100%' h='30px' alignItems='center' templateColumns='repeat(5, 1fr)' gap='2'
+                    margin='5px auto 10px' padding='0 30px'>
                     <GridItem rowSpan={1} colSpan={2} placeSelf='self-start'>
                         <Link to='/'>
-                            <Image src='/logo-mercadolivre.png' alt='logo mercado livre' w='100px' />
+                            <Image src='/logo-mercadolivre.png' alt='logo mercado livre' w='120px' minW='120px' />
                         </Link >
                     </GridItem >
-                    <GridItem rowSpan={1} colSpan={3} placeSelf='self-end'>
-                        <InputGroup borderRadius='8px' boxSizing='border-box' w='150px'
+                    <GridItem rowSpan={1} colSpan={3}>
+                        <InputGroup borderRadius='8px' boxSizing='border-box'
                             boxShadow='rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;'>
                             <Input
-                                fontSize='0.7rem'
+                                fontSize='1rem'
                                 h='30px'
                                 onChange={(e) => setSearchBar(e.target.value)}
                                 onKeyDown={(e) => {
@@ -68,7 +57,6 @@ export const Header = () => {
                                 value={searchBar} // Relacionar para resetar o input ao enviar formulário
                                 bg='white'
                                 placeholder="Buscar produtos..."
-                                textOverflow='ellipsis'
                             />
                             <InputRightElement height='30px' borderLeft='1px solid lightgray'>
                                 <Link to={`/search?query=${searchBar}`}>
@@ -78,14 +66,12 @@ export const Header = () => {
                         </InputGroup>
                     </GridItem>
                 </Grid >
-
-                {/* Barra inferior */}
-                <Grid w='100%' templateColumns='repeat(8, 1fr)' gap='3' m='5px auto 0px'>
+                <Grid w='100%' templateColumns='repeat(8, 1fr)' gap='3' paddingTop='5px'>
                     {
                         isLoggedIn ?
                             (
                                 <>
-                                    <GridItem colSpan={6} w='130px'>
+                                    <GridItem colSpan={6} marginLeft='20px' w='150px'>
                                         <Select
                                             fontSize='1rem'
                                             placeholder="Categorias"
@@ -111,7 +97,7 @@ export const Header = () => {
                             :
                             (
                                 <>
-                                    <GridItem colSpan={4} w='130px'>
+                                    <GridItem colSpan={4} marginLeft='20px' w='150px'>
                                         <Select
                                             fontSize='1rem'
                                             placeholder="Categorias"
@@ -131,7 +117,7 @@ export const Header = () => {
                                         <Link to='/login'>Entre</Link>
                                     </GridItem>
                                     <GridItem colSpan={1} cursor='pointer' placeSelf='center'>
-                                        <Link to='/cart'>
+                                        <Link to='/cart' content="1">
                                             <BsCart2 size='1.2rem' />
                                         </Link>
                                     </GridItem>

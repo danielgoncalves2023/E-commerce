@@ -1,8 +1,8 @@
 import { Box } from "@chakra-ui/react"
-import Header from "./Header"
+import Header from "./LargeWidth/Header"
 import { Footer } from "./Footer"
 import { useMediaQuery } from 'react-responsive';
-import HeaderResponsive from "./HeaderResponsive";
+import HeaderSmall from "./SmallWidth/Header";
 
 export const Layout = ({ children }: any) => {
     const responsiveMode = useMediaQuery({
@@ -15,8 +15,8 @@ export const Layout = ({ children }: any) => {
                 responsiveMode ?
                     (
                         <>
-                            <Box bg='#DCDCDC' h='100%' pb='100px'>
-                                <HeaderResponsive />
+                            <Box bg='#DCDCDC' minH='100dvh' maxH='100%' pb='60px'>
+                                <HeaderSmall />
                                 {children}
                             </Box >
                             <Footer />
@@ -24,7 +24,7 @@ export const Layout = ({ children }: any) => {
                     ) :
                     (
                         <>
-                            <Box bg='#DCDCDC' h='100%' pb='100px'>
+                            <Box bg='#DCDCDC' minH='100dvh' pb='70px'>
                                 <Header />
                                 {children}
                             </Box >

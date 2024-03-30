@@ -4,12 +4,12 @@ import {
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { RegisterNewUser } from "../services/registerUser";
-// import { useMediaQuery } from 'react-responsive';
+import { useMediaQuery } from 'react-responsive';
 
 export const Register = () => {
-    // const responsiveMedia = useMediaQuery({
-    //     query: '(max-device-width: 490px)'
-    // });
+    const responsiveMedia = useMediaQuery({
+        query: '(max-device-width: 420px)'
+    });
 
     const navigate = useNavigate()
 
@@ -26,10 +26,10 @@ export const Register = () => {
 
     return (
         <>
-            {/* {
+            {
                 responsiveMedia ?
                     (
-                        <Box bg='white' w='auto' m='auto' p='20px' h='200dvh'>
+                        <Box bg='white' w='auto' p='20px' h='700px'>
                             <Center>
                                 <Text marginTop='20px' fontSize='1.7rem'>
                                     Cadastre sua conta
@@ -81,7 +81,7 @@ export const Register = () => {
                             </Grid>
                         </Box>
                     ) :
-                    ( */}
+                    (
                         <Box bg='white' w='auto' m='auto' p='20px' h='110dvh'>
                             <Center>
                                 <Text marginTop='20px' fontSize='1.7rem'>
@@ -133,8 +133,8 @@ export const Register = () => {
                                 </Button>
                             </Grid>
                         </Box>
-                    {/* )
-            } */}
+                    )
+            }
         </>
     )
 }
