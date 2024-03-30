@@ -13,7 +13,6 @@ interface CardInfoProps {
 
 const responsive = {
     superLargeDesktop: {
-        // the naming can be any, depends on you.
         breakpoint: { max: 4000, min: 1335 },
         items: 5,
     },
