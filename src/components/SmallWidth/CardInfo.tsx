@@ -19,7 +19,7 @@ export const CardInfoSmall = ({ images, name, description, value }: CardInfoProp
     let toast = useToast()
 
     const handleBuyButtonClick = () => {
-        if (userLogged) {
+        if (userLogged === true) {
             setTimeout(() => {
                 addItemCart(name, emailUser, navigate, toast);
                 navigate('/cart');
@@ -33,7 +33,7 @@ export const CardInfoSmall = ({ images, name, description, value }: CardInfoProp
     };
 
     const handleAddToCartButtonClick = () => {
-        if (userLogged) {
+        if (userLogged === true) {
             setTimeout(() => {
                 addItemCart(name, emailUser, navigate, toast);
             }, 500)
