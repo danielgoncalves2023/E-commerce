@@ -14,14 +14,14 @@ interface CardInfoProps {
 }
 
 export const CardInfoSmall = ({ images, name, description, value }: CardInfoProps) => {
-    const { userLogged } = useSelector((rootReducer: any) => rootReducer.userReducer)
+    const { emailUser, userLogged } = useSelector((rootReducer: any) => rootReducer.userReducer)
     const navigate = useNavigate()
     let toast = useToast()
 
     const handleBuyButtonClick = () => {
         if (userLogged) {
             setTimeout(() => {
-                addItemCart(name, userLogged, navigate, toast);
+                addItemCart(name, emailUser, navigate, toast);
                 navigate('/cart');
             }, 500);
         } else {
@@ -35,7 +35,7 @@ export const CardInfoSmall = ({ images, name, description, value }: CardInfoProp
     const handleAddToCartButtonClick = () => {
         if (userLogged) {
             setTimeout(() => {
-                addItemCart(name, userLogged, navigate, toast);
+                addItemCart(name, emailUser, navigate, toast);
             }, 500)
         } else {
             setTimeout(() => {

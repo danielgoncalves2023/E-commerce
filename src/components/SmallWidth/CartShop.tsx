@@ -67,10 +67,12 @@ export const CartShopSmall = () => {
 
     function getTotalProductsValue(userCart: Product[]) {
         let totalValue = 0;
+        userCart = db[userIndex].cart;
 
         userCart.forEach(product => {
             totalValue += product.value * product.quantity;
         });
+        
         return totalValue;
     }
 

@@ -14,6 +14,7 @@ const INITIAL_STATE: IState = {
 };
 
 const userReducer = (state = INITIAL_STATE, action: any) => {
+    // LOGIN
     if (action.type === userActionTypes.LOGIN) {
         let user = null;
 
@@ -26,6 +27,8 @@ const userReducer = (state = INITIAL_STATE, action: any) => {
         }
 
         return { ...state, currentUser: user, userLogged: true, emailUser: action.email }
+
+    // LOGOUT
     } else if (action.type === userActionTypes.LOGOUT) {
 
         console.log(state)
