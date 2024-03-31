@@ -14,7 +14,7 @@ interface CardInfoProps {
 }
 
 export const SearchProductsSmall = ({ images, name, description, value }: CardInfoProps) => {
-    const { userLogged } = useSelector((rootReducer: any) => rootReducer.userReducer)
+    const { emailUser } = useSelector((rootReducer: any) => rootReducer.userReducer)
     const toast = useToast()
     const navigate = useNavigate()
 
@@ -51,8 +51,8 @@ export const SearchProductsSmall = ({ images, name, description, value }: CardIn
                                     <Button variant='solid' colorScheme='blue' fontSize='0.8rem'
                                         onClick={
                                             () => {
-                                                if (userLogged) {
-                                                    addItemCart(name, userLogged, navigate, toast);
+                                                if (emailUser) {
+                                                    addItemCart(name, emailUser, navigate, toast);
                                                     setTimeout(() => {
                                                         navigate('/cart')
                                                     }, 500);
@@ -66,9 +66,9 @@ export const SearchProductsSmall = ({ images, name, description, value }: CardIn
                                     </Button>
                                     <Button variant='ghost' colorScheme='blue' fontSize='0.8rem'
                                         onClick={() => {
-                                            if (userLogged) {
+                                            if (emailUser) {
                                                 setTimeout(() => {
-                                                    addItemCart(name, userLogged, navigate, toast);
+                                                    addItemCart(name, emailUser, navigate, toast);
                                                 }, 500);
                                             } else {
                                                 setTimeout(() => {
