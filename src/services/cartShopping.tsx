@@ -9,68 +9,41 @@ interface Product {
     quantity: number;
 }
 
-interface User {
-    name: string;
-    login: {
-        email: string;
-        password: string;
-    };
-    cart: Product[];
-}
-
-interface Products {
-    [department: string]: Product[];
-}
-
 export const addItemCart = (productName: string, emailUser: string, navigate: any, toast: any) => {
     // Procurar pelo usuário no banco de dados
-    const user: User | undefined = db.find(user => user.login.email === emailUser);
+    const userIndex = db.findIndex(user => user.login.email === emailUser);
 
     // Se não encontrar usuário (não estiver logado), será redirecionado a página de login
-    if (!user) {
+    if (userIndex === -1) {
         navigate('/login');
         return;
-    } else {
-        // Encontrar o índice do usuário no carrinho
-        const userIndex = db.findIndex(user => user.login.email === emailUser);
-
-        let productFound: Product | undefined;
-
-        // Procurar pelo produto nos diferentes departamentos
-        for (const department in products) {
-            if (Object.prototype.hasOwnProperty.call(products, department)) {
-                const product = (products as Products)[department].find(prod => prod.name === productName);
-                if (product) {
-                    productFound = product;
-
-                    break;
-                }
-            }
-        }
-
-        // Se não encontrar o produto para adicionar ao carrinho
-        if (!productFound) {
-            console.error(`Produto com o nome ${productName} não encontrado.`);
-            return;
-        } else {
-              const existingProductIndex = db[userIndex].cart.findIndex(item => item.name === productName);
-
-            if (existingProductIndex !== -1) {
-                // Se o produto já estiver no carrinho, adicione-o novamente com quantidade 1
-                db[userIndex].cart.push({ ...productFound, quantity: 1 });
-            } else {
-                // Se o produto não estiver no carrinho, adicione-o com quantidade 1
-                db[userIndex].cart.push({ ...productFound, quantity: 1 });
-            }
-
-            toast({
-                title: `Produto adicionado ao carrinho.`,
-                status: 'success',
-                isClosable: true,
-            });
-        }
     }
-};
+
+    const allProducts = Object.values(products).flat();
+    const productFound = allProducts.find(product => product.name === productName);
+
+    // Se não encontrar o produto para adicionar ao carrinho
+    if (!productFound) {
+        console.error(`Produto com o nome ${productName} não encontrado.`);
+        return;
+    }
+
+    const existingProductIndex = db[userIndex].cart.findIndex(item => item.name === productName);
+
+    if (existingProductIndex !== -1) {
+        // Se o produto já estiver no carrinho, incrementa a quantidade
+        db[userIndex].cart[existingProductIndex].quantity++;
+    } else {
+        // Se o produto não estiver no carrinho, adiciona com quantidade 1
+        db[userIndex].cart.push({ ...productFound, quantity: 1 });
+    }
+
+    toast({
+        title: `Produto adicionado ao carrinho.`,
+        status: 'success',
+        isClosable: true,
+    });
+}
 
 export const removeItemCart = (productName: string, emailUser: string, navigate: any, toast: any) => {
     // Encontrar o índice do usuário no carrinho
