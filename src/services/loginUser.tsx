@@ -5,23 +5,21 @@ export const loginUser = (email: string, password: string, dispatch: any, naviga
     let userFound = false;
 
     for (let i = 0; i < db.length; i++) {
-        if (db[i].login.email === email) {
-            setTimeout(() => {
-                dispatch({
-                    type: userActionTypes.LOGIN,
-                    email: email,
-                    password: password
-                })
+        if (db[i].login.email === email && db[i].login.password === password) {
+            dispatch({
+                type: userActionTypes.LOGIN,
+                email: email,
+                password: password
+            })
 
-                userFound = true;
-                navigate('/')
-            }, 400)
+            userFound = true;
+            navigate('/')
 
             break;
         }
     }
 
-    if(userFound = false){
+    if (userFound === false) {
         alert(`Email ou senha incorreto.`)
     }
 }
