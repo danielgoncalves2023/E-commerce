@@ -42,6 +42,7 @@ export const addItemCart = (productName: string, emailUser: string, navigate: an
                 const product = (products as Products)[department].find(prod => prod.name === productName);
                 if (product) {
                     productFound = product;
+
                     break;
                 }
             }
@@ -52,19 +53,14 @@ export const addItemCart = (productName: string, emailUser: string, navigate: an
             console.error(`Produto com o nome ${productName} não encontrado.`);
             return;
         } else {
-            let productAlreadyInCart = false;
+              const existingProductIndex = db[userIndex].cart.findIndex(item => item.name === productName);
 
-            for (let i = 0; i < db[userIndex].cart.length; i++) {
-                if (productFound.name === db[userIndex].cart[i].name) {
-                    db[userIndex].cart[i].quantity++;
-                    productAlreadyInCart = true;
-                    break; // Encerra o loop assim que o produto for encontrado
-                }
-            }
-
-            if (!productAlreadyInCart) {
-                // Adicionar o produto ao carrinho do usuário
-                db[userIndex].cart.push(productFound);
+            if (existingProductIndex !== -1) {
+                // Se o produto já estiver no carrinho, adicione-o novamente com quantidade 1
+                db[userIndex].cart.push({ ...productFound, quantity: 1 });
+            } else {
+                // Se o produto não estiver no carrinho, adicione-o com quantidade 1
+                db[userIndex].cart.push({ ...productFound, quantity: 1 });
             }
 
             toast({

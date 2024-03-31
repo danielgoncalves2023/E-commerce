@@ -1,11 +1,10 @@
 import {
     Card, Image, CardBody, CardFooter, Stack, Heading, Text, Button, Box, ButtonGroup, Center, useToast
 } from "@chakra-ui/react"
-import { useContext } from "react";
-import { AppContext } from "../AppContext";
 import { formatReal } from "../../services/convertFormatValue";
 import { useNavigate } from "react-router-dom";
 import { addItemCart } from "../../services/cartShopping";
+import { useSelector } from "react-redux";
 
 interface CardInfoProps {
     images: string;
@@ -15,7 +14,7 @@ interface CardInfoProps {
 }
 
 export const SearchProducts = ({ images, name, description, value }: CardInfoProps) => {
-    const { userLogged } = useContext(AppContext)
+    const { emailUser } = useSelector((rootReducer: any) => rootReducer.userReducer)
     const toast = useToast()
     const navigate = useNavigate()
 
@@ -52,8 +51,8 @@ export const SearchProducts = ({ images, name, description, value }: CardInfoPro
                                     <Button variant='solid' colorScheme='blue' fontSize='0.8rem'
                                         onClick={
                                             () => {
-                                                if (userLogged) {
-                                                    addItemCart(name, userLogged, navigate, toast);
+                                                if (emailUser) {
+                                                    addItemCart(name, emailUser, navigate, toast);
                                                     setTimeout(() => {
                                                         navigate('/cart')
                                                     }, 500);
@@ -67,9 +66,9 @@ export const SearchProducts = ({ images, name, description, value }: CardInfoPro
                                     </Button>
                                     <Button variant='ghost' colorScheme='blue' fontSize='0.8rem'
                                         onClick={() => {
-                                            if (userLogged) {
+                                            if (emailUser) {
                                                 setTimeout(() => {
-                                                    addItemCart(name, userLogged, navigate, toast);
+                                                    addItemCart(name, emailUser, navigate, toast);
                                                 }, 500);
                                             } else {
                                                 setTimeout(() => {

@@ -1,11 +1,10 @@
 import {
     Card, Image, CardBody, CardFooter, Stack, Heading, Text, Button, Box, ButtonGroup, Center, useToast
 } from "@chakra-ui/react"
-import { useContext } from "react";
-import { AppContext } from "../AppContext";
 import { formatReal } from "../../services/convertFormatValue";
 import { useNavigate } from "react-router-dom";
 import { addItemCart } from "../../services/cartShopping";
+import { useSelector } from "react-redux";
 
 interface CardInfoProps {
     images: string;
@@ -15,7 +14,7 @@ interface CardInfoProps {
 }
 
 export const SearchProductsSmall = ({ images, name, description, value }: CardInfoProps) => {
-    const { userLogged } = useContext(AppContext)
+    const { userLogged } = useSelector((rootReducer: any) => rootReducer.userReducer)
     const toast = useToast()
     const navigate = useNavigate()
 

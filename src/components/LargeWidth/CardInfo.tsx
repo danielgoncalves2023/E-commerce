@@ -1,11 +1,10 @@
 import {
     Button, ButtonGroup, Card, Image, Text, CardBody, CardFooter, Divider, Heading, Stack, Center, useToast
 } from "@chakra-ui/react"
-import { AppContext } from "../AppContext";
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { formatReal } from "../../services/convertFormatValue";
 import { addItemCart } from "../../services/cartShopping";
+import { useSelector } from "react-redux";
 
 interface CardInfoProps {
     images: string;
@@ -15,14 +14,14 @@ interface CardInfoProps {
 }
 
 export const CardInfo = ({ images, name, description, value }: CardInfoProps) => {
-    const { userLogged } = useContext(AppContext);
+    const { emailUser, userLogged } = useSelector((rootReducer: any) => rootReducer.userReducer)
     const navigate = useNavigate()
     let toast = useToast()
 
     const handleBuyButtonClick = () => {
-        if (userLogged) {
+        if (userLogged === true) {
             setTimeout(() => {
-                addItemCart(name, userLogged, navigate, toast);
+                addItemCart(name, emailUser, navigate, toast);
                 navigate('/cart');
             }, 500);
         } else {
@@ -34,9 +33,9 @@ export const CardInfo = ({ images, name, description, value }: CardInfoProps) =>
     };
 
     const handleAddToCartButtonClick = () => {
-        if (userLogged) {
+        if (userLogged === true) {
             setTimeout(() => {
-                addItemCart(name, userLogged, navigate, toast);
+                addItemCart(name, emailUser, navigate, toast);
             }, 500)
         } else {
             setTimeout(() => {

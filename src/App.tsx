@@ -3,19 +3,20 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { BrowserRouter } from 'react-router-dom';
 import MainRoutes from './routes';
 import { Layout } from './components/Layout';
-import { AppContextProvider } from './components/AppContext';
+import { Provider } from 'react-redux';
+import store from './store';
 
 function App() {
   return (
-    <AppContextProvider>
       <BrowserRouter>
-        <ChakraProvider>
-          <Layout>
-            <MainRoutes />
-          </Layout>
-        </ChakraProvider>
+        <Provider store={store}>
+          <ChakraProvider>
+            <Layout>
+              <MainRoutes />
+            </Layout>
+          </ChakraProvider>
+        </Provider>
       </BrowserRouter>
-    </AppContextProvider >
   );
 }
 

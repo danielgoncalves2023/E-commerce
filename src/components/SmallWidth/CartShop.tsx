@@ -4,10 +4,10 @@ import {
 } from "@chakra-ui/react";
 import { db } from "../../database/users/users";
 import { useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { formatReal } from "../../services/convertFormatValue";
 import { removeItemCart } from "../../services/cartShopping";
-import { AppContext } from "../AppContext";
+import { useSelector } from "react-redux";
 
 interface Product {
     name: string;
@@ -18,21 +18,24 @@ interface Product {
 }
 
 export const CartShopSmall = () => {
-    const { userLogged } = useContext(AppContext);
+    const { emailUser } = useSelector((rootReducer: any) => rootReducer.userReducer)
     const navigate = useNavigate();
     const toast = useToast();
 
     let userIndex: number = -1;
+    let userCart: Product[] = [];
+
     for (let i = 0; i < db.length; i++) {
-        if (userLogged === db[i].login.email) {
-            console.log(db[i].cart);
+        if (emailUser === db[i].login.email) {
             userIndex = i;
+            userCart = db[i].cart;
+
             break; // Sair do loop se as credenciais forem encontradas
         }
     }
 
-    const [totalProducts, setTotalProducts] = useState(getTotalProductsQuantity(userIndex) ?? 0);
-    const [totalProductsValue, setTotalProductsValue] = useState(getTotalProductsValue(userIndex) ?? 0);
+    const [totalProducts, setTotalProducts] = useState(getTotalProductsQuantity(userCart));
+    const [totalProductsValue, setTotalProductsValue] = useState(getTotalProductsValue(userCart));
     const [isFinishingCart, setIsFinishingCart] = useState(false);
 
     const finishCart = (userIndex: number) => {
@@ -53,21 +56,19 @@ export const CartShopSmall = () => {
         }, 1000); // Tempo de simulação de 2 segundos
     };
 
-    function getTotalProductsQuantity(userIndex: number): number {
-        const user = db[userIndex];
+    function getTotalProductsQuantity(userCart: Product[]) {
         let totalQuantity = 0;
 
-        user.cart.forEach(product => {
+        userCart.forEach(product => {
             totalQuantity += product.quantity;
         });
         return totalQuantity;
     }
 
-    function getTotalProductsValue(userIndex: number): number {
-        const user = db[userIndex];
+    function getTotalProductsValue(userCart: Product[]) {
         let totalValue = 0;
 
-        user.cart.forEach(product => {
+        userCart.forEach(product => {
             totalValue += product.value * product.quantity;
         });
         return totalValue;
@@ -78,14 +79,14 @@ export const CartShopSmall = () => {
         updatedCart[index].quantity = newValue;
         db[userIndex].cart = updatedCart;
 
-        setTotalProducts(getTotalProductsQuantity(userIndex));
-        setTotalProductsValue(getTotalProductsValue(userIndex));
+        setTotalProducts(getTotalProductsQuantity(userCart));
+        setTotalProductsValue(getTotalProductsValue(userCart));
     };
 
     const handleRemoveItem = (itemName: string) => {
-        removeItemCart(itemName, userLogged, navigate, toast);
-        setTotalProducts(getTotalProductsQuantity(userIndex));
-        setTotalProductsValue(getTotalProductsValue(userIndex));
+        removeItemCart(itemName, emailUser, navigate, toast);
+        setTotalProducts(getTotalProductsQuantity(userCart));
+        setTotalProductsValue(getTotalProductsValue(userCart));
     };
 
     return (

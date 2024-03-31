@@ -1,4 +1,4 @@
-import { dataBaseUsers } from "../components/AppContext";
+import { db } from "../database/users/users";
 
 interface IUser {
     name: string;
@@ -38,8 +38,8 @@ export const RegisterNewUser = (
     const emailIsValid = validEmail(emailRg);
 
     if (emailIsValid) {
-        for (let i = 0; i < dataBaseUsers.length; i++) {
-            const user = dataBaseUsers[i];
+        for (let i = 0; i < db.length; i++) {
+            const user = db[i];
 
             if (user.name === nameRg) {
                 alert('Nome de usuário já existe')
@@ -57,7 +57,7 @@ export const RegisterNewUser = (
                     cart: []
                 }
 
-                dataBaseUsers.push(newUser)
+                db.push(newUser)
                 navigate('/login')
                 break;
             }

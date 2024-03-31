@@ -1,16 +1,18 @@
 import {
     Box, Grid, GridItem, Image, Input, InputRightElement, InputGroup, Select
 } from "@chakra-ui/react";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { BsCart2 } from "react-icons/bs";
 import { GoSearch } from "react-icons/go";
 import { Link, useNavigate } from "react-router-dom";
-import { AppContext } from "../AppContext";
 import { db } from "../../database/users/users";
+import { useDispatch, useSelector } from "react-redux";
+import userActionTypes from "../../store/reducers/user/action-types";
+
 
 export const HeaderSmall = () => {
-    const { isLoggedIn, setIsLoggedIn } = useContext(AppContext)
-    const { userLogged, setUserLogged } = useContext(AppContext)
+    const { userLogged } = useSelector((rootReducer: any) => rootReducer.userReducer)
+    const dispatch = useDispatch()
     const navigate = useNavigate()
 
     // Barra de pesquisa de produto
@@ -24,9 +26,9 @@ export const HeaderSmall = () => {
 
     // Deslogar
     const logout = () => {
-        setIsLoggedIn(false)
-        setUserLogged("")
-        navigate('/')
+        dispatch({
+            type: userActionTypes.LOGOUT
+        })
     }
 
     let userIndex: number = -1;
@@ -40,8 +42,8 @@ export const HeaderSmall = () => {
     
     return (
         <>
-            {/* Barra superior */}
             <Box bg='#FFD700' textAlign='center' p='10px' mb='10px' boxShadow="rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+                {/* Barra superior */}
                 <Grid w='100%' h='30px' alignItems='center' templateColumns='repeat(5, 1fr)'
                     margin='5px auto 10px' padding='0 20px' justifyContent='space-between'>
                     <GridItem rowSpan={1} colSpan={2} placeSelf='self-start'>
@@ -82,7 +84,7 @@ export const HeaderSmall = () => {
                 {/* Barra inferior */}
                 <Grid w='100%' templateColumns='repeat(8, 1fr)' gap='3' m='5px auto 0px'>
                     {
-                        isLoggedIn ?
+                        userLogged ?
                             (
                                 <>
                                     <GridItem colSpan={6} w='130px'>

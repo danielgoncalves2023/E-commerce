@@ -1,15 +1,16 @@
 import {
     Box, Grid, GridItem, Image, Input, InputRightElement, InputGroup, Select
 } from "@chakra-ui/react";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { BsCart2 } from "react-icons/bs";
 import { GoSearch } from "react-icons/go";
 import { Link, useNavigate } from "react-router-dom";
-import { AppContext } from "../AppContext";
+import { useDispatch, useSelector } from "react-redux";
+import userActionTypes from "../../store/reducers/user/action-types";
 
 export const Header = () => {
-    const { isLoggedIn, setIsLoggedIn } = useContext(AppContext)
-    const { setUserLogged } = useContext(AppContext)
+    const { currentUser, userLogged } = useSelector((rootReducer: any) => rootReducer.userReducer)
+    const dispatch = useDispatch()
     const navigate = useNavigate()
 
     // Barra de pesquisa de produto
@@ -23,9 +24,9 @@ export const Header = () => {
 
     // Deslogar
     const logout = () => {
-        setIsLoggedIn(false)
-        setUserLogged("")
-        navigate('/')
+        dispatch({
+            type: userActionTypes.LOGOUT
+        })
     }
 
     return (
@@ -68,7 +69,7 @@ export const Header = () => {
                 </Grid >
                 <Grid w='100%' templateColumns='repeat(8, 1fr)' gap='3' paddingTop='5px'>
                     {
-                        isLoggedIn ?
+                        userLogged ?
                             (
                                 <>
                                     <GridItem colSpan={6} marginLeft='20px' w='150px'>

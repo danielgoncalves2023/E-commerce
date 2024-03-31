@@ -1,19 +1,17 @@
 import {
     Box, FormControl, FormLabel, Input, FormErrorMessage, Button, Text, Grid, Center
 } from "@chakra-ui/react"
-import { useContext, useState } from "react"
-import { AppContext } from "../components/AppContext"
+import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { LoginUser } from "../services/loginUser"
 import { useMediaQuery } from 'react-responsive';
+import { useDispatch } from "react-redux"
+import userActionTypes from "../store/reducers/user/action-types";
 
 export const Login = () => {
     const responsiveMedia = useMediaQuery({
         query: '(max-device-width: 420px)'
     });
 
-    const { setIsLoggedIn } = useContext(AppContext)
-    const { setUserLogged } = useContext(AppContext)
     const navigate = useNavigate()
 
     const [email, inputEmail] = useState('')
@@ -23,6 +21,8 @@ export const Login = () => {
 
     const isErrorEmail = email === '';
     const isErrorPassword = password === '';
+
+    const dispatch = useDispatch()
 
     return (
         <>
@@ -50,8 +50,14 @@ export const Login = () => {
                                     size='md'
                                     mt="4"
                                     onClick={() => {
-                                        setTimeout(() => {
-                                            LoginUser(email, password, setIsLoggedIn, setUserLogged, navigate)
+                                        dispatch({
+                                            type: userActionTypes.LOGIN,
+                                            email: email,
+                                            password: password
+                                        })
+
+                                        setTimeout(() => {  
+                                        navigate('/')
                                         }, 400)
                                     }
                                     }
@@ -92,8 +98,14 @@ export const Login = () => {
                                     size='md'
                                     mt="4"
                                     onClick={() => {
-                                        setTimeout(() => {
-                                            LoginUser(email, password, setIsLoggedIn, setUserLogged, navigate)
+                                        dispatch({
+                                            type: userActionTypes.LOGIN,
+                                            email: email,
+                                            password: password
+                                        })
+
+                                        setTimeout(() => {  
+                                        navigate('/')
                                         }, 400)
                                     }
                                     }

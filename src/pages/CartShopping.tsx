@@ -1,12 +1,12 @@
-import { useContext, useEffect } from "react"
+import { useEffect } from "react"
 import { CartShop } from "../components/LargeWidth/CartShop"
-import { AppContext } from "../components/AppContext"
+import { CartShopSmall } from "../components/SmallWidth/CartShop";
 import { useNavigate } from "react-router-dom"
 import { useMediaQuery } from 'react-responsive';
-import { CartShopSmall } from "../components/SmallWidth/CartShop";
+import { useSelector } from "react-redux";
 
 export const CartShopping = () => {
-    const { isLoggedIn } = useContext(AppContext)
+    const { userLogged } = useSelector((rootReducer: any) => rootReducer.userReducer)
     const navigate = useNavigate()
 
     const responsiveMedia = useMediaQuery({
@@ -15,22 +15,20 @@ export const CartShopping = () => {
 
     // Redirecionar para a página de login se o usuário não estiver logado
     useEffect(() => {
-        if (!isLoggedIn) {
+        if (userLogged === false) {
             navigate(`/login`);
         }
-    }, [isLoggedIn, navigate]);
+    }, [userLogged, navigate]);
 
     return (
         <>
             {
-                responsiveMedia ?
-                (
-                    isLoggedIn && <CartShopSmall />
-                ) :
-                (
-                    isLoggedIn && <CartShop />
+                responsiveMedia ? (
+                    userLogged ? <CartShopSmall /> : null
+                ) : (
+                    userLogged ? <CartShop /> : null
                 )
             }
         </>
-    )
+    );
 }
