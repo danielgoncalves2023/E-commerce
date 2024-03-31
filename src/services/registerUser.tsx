@@ -30,35 +30,38 @@ const validEmail = (email: string): boolean => {
 
 // REGISTRO de novos usuários
 export const RegisterNewUser = (
-    nameRg: string,
-    emailRg: string,
-    passwordRg: string,
+    nameRegister: string,
+    emailRegister: string,
+    passwordRegister: string,
     navigate: any
 ) => {
-    const emailIsValid = validEmail(emailRg);
+    const emailIsValid = validEmail(emailRegister);
 
     if (emailIsValid) {
         for (let i = 0; i < db.length; i++) {
             const user = db[i];
 
-            if (user.name === nameRg) {
+            if (user.name === nameRegister) {
                 alert('Nome de usuário já existe')
+
                 break;
-            } else if (user.login.email === emailRg) {
+            } else if (user.login.email === emailRegister) {
                 alert('Email já cadastrado')
+
                 break;
             } else {
                 let newUser: IUser = {
-                    name: nameRg,
+                    name: nameRegister,
                     login: {
-                        email: emailRg,
-                        password: passwordRg
+                        email: emailRegister,
+                        password: passwordRegister
                     },
                     cart: []
                 }
 
                 db.push(newUser)
                 navigate('/login')
+
                 break;
             }
         }

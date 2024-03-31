@@ -15,10 +15,12 @@ export const Register = () => {
 
     const [email, inputEmail] = useState('')
     const handleEmailChange = (e: any) => inputEmail(e.target.value)
+
     const [password, inputPassword] = useState('')
     const handlePasswordChange = (e: any) => inputPassword(e.target.value)
-    const [user, inputuUser] = useState('')
-    const handleUserChange = (e: any) => inputuUser(e.target.value)
+
+    const [user, inputUser] = useState('')
+    const handleUserChange = (e: any) => inputUser(e.target.value)
 
     const isErrorEmail = email === '';
     const isErrorPassword = password === '';
@@ -38,7 +40,7 @@ export const Register = () => {
                             <Grid placeContent="center">
                                 <FormControl isInvalid={isErrorEmail || isErrorPassword || isErrorUser} m='30px auto'>
                                     <FormLabel fontSize='1rem' mt='10px'>Usuário</FormLabel>
-                                    <Input type='email' value={user} w='300px' onChange={handleUserChange} />
+                                    <Input type='user' value={user} w='300px' onChange={handleUserChange} />
                                     <FormLabel fontSize='1rem' mt='10px'>Email</FormLabel>
                                     <Input type='email' value={email} w='300px' onChange={handleEmailChange} />
                                     <FormLabel fontSize='1rem' mt='10px'>Senha</FormLabel>
@@ -91,7 +93,7 @@ export const Register = () => {
                             <Grid placeContent="center">
                                 <FormControl isInvalid={isErrorEmail || isErrorPassword || isErrorUser} m='30px auto'>
                                     <FormLabel fontSize='1rem' mt='10px'>Usuário</FormLabel>
-                                    <Input type='email' value={user} minWidth='300px' w='400px' onChange={handleUserChange} />
+                                    <Input type='user' value={user} minWidth='300px' w='400px' onChange={handleUserChange} />
                                     <FormLabel fontSize='1rem' mt='10px'>Email</FormLabel>
                                     <Input type='email' value={email} minWidth='300px' w='400px' onChange={handleEmailChange} />
                                     <FormLabel fontSize='1rem' mt='10px'>Senha</FormLabel>

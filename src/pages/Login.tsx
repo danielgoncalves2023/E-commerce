@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom"
 import { useMediaQuery } from 'react-responsive';
 import { useDispatch } from "react-redux"
 import userActionTypes from "../store/reducers/user/action-types";
+import { loginUser } from "../services/loginUser";
 
 export const Login = () => {
     const responsiveMedia = useMediaQuery({
@@ -49,17 +50,7 @@ export const Login = () => {
                                     colorScheme='blue'
                                     size='md'
                                     mt="4"
-                                    onClick={() => {
-                                        dispatch({
-                                            type: userActionTypes.LOGIN,
-                                            email: email,
-                                            password: password
-                                        })
-
-                                        setTimeout(() => {  
-                                        navigate('/')
-                                        }, 400)
-                                    }
+                                    onClick={() => loginUser(email, password, dispatch, navigate)
                                     }
                                 >
                                     Continuar
@@ -97,18 +88,7 @@ export const Login = () => {
                                     colorScheme='blue'
                                     size='md'
                                     mt="4"
-                                    onClick={() => {
-                                        dispatch({
-                                            type: userActionTypes.LOGIN,
-                                            email: email,
-                                            password: password
-                                        })
-
-                                        setTimeout(() => {  
-                                        navigate('/')
-                                        }, 400)
-                                    }
-                                    }
+                                    onClick={() => loginUser(email, password, dispatch, navigate)}
                                 >
                                     Continuar
                                 </Button>
